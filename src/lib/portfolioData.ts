@@ -2,13 +2,15 @@ import type { Database } from '../types';
 import { assetPath } from './githubPages';
 
 export async function loadPortfolioData(): Promise<Database> {
-  try {
-    const apiResponse = await fetch('/api/portfolio');
-    if (apiResponse.ok) {
-      return normalizeAssetUrls(await apiResponse.json());
+  if (import.meta.env.DEV) {
+    try {
+      const apiResponse = await fetch('/api/portfolio');
+      if (apiResponse.ok) {
+        return normalizeAssetUrls(await apiResponse.json());
+      }
+    } catch {
+      // GitHub Pages has no API server, so fall through to the static export.
     }
-  } catch {
-    // GitHub Pages has no API server, so fall through to the static export.
   }
 
   const staticResponse = await fetch(assetPath('portfolio.json'));
@@ -29,4 +31,3 @@ function normalizeAssetUrls(data: Database): Database {
     },
   };
 }
-

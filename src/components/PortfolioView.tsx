@@ -5,7 +5,7 @@ import {
   Play, GitCommit, GitPullRequest, Cloud, Send, Github, Linkedin, ExternalLink, 
   FileText, CheckCircle, Phone, MapPin, Mail, ArrowUpRight, Award, MessageSquare, 
   Calendar, Briefcase, GraduationCap, Star, Check, Globe, ChevronRight, X, ArrowUp,
-  Sun, Moon
+  Sun, Moon, Menu
 } from "lucide-react";
 
 // Types matching server schema
@@ -74,7 +74,7 @@ function AnimatedCounter({
   return (
     <div>
       <p className={className}>{displayValue}{suffix}</p>
-      <p className="text-xs text-slate-400 uppercase tracking-wider font-mono">{label}</p>
+      <p className="text-xs text-slate-600 dark:text-slate-400 uppercase tracking-wider font-mono">{label}</p>
     </div>
   );
 }
@@ -85,6 +85,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
   const [filterCategory, setFilterCategory] = useState("All");
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const prefersReducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -142,6 +143,13 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
   // Custom Detail Modal states
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedBlog, setSelectedBlog] = useState<Blog | null>(null);
@@ -175,6 +183,10 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
 
   // Helper to post dynamic visitor tracking data
   const trackVisit = (pageName: string) => {
+    if (!import.meta.env.DEV) {
+      return;
+    }
+
     fetch("/api/track-visit", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -285,6 +297,16 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
   const blogs = db?.blogs || [];
   const site = db?.site || { logoText: "Ritesh", logoSubtext: "Kumar", socialWhatsApp: getWhatsAppUrl() };
   const resumeHref = profile.resumeUrl && profile.resumeUrl !== "#" ? profile.resumeUrl : assetPath(RESUME_PATH);
+  const navItems = [
+    { href: "#about", label: "About" },
+    { href: "#services", label: "Services" },
+    { href: "#skills", label: "Skills" },
+    { href: "#portfolio", label: "Projects" },
+    { href: "#experience", label: "Experience" },
+    { href: "#testimonials", label: "Client Buzz" },
+    { href: "#blog", label: "Blog" },
+    { href: "#contact", label: "Get In Touch" },
+  ];
 
   // Generate clean categories list for portfolio projects tab
   const projectCategories = ["All", ...Array.from(new Set(projects.map((p: any) => p.category)))];
@@ -329,11 +351,20 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
       <div className={`absolute bottom-1/4 left-10 w-[450px] h-[450px] ${isDark ? "bg-purple-600/5" : "bg-purple-500/3"} rounded-full blur-3xl pointer-events-none transition-opacity duration-300`}></div>
 
       {/* FLOATING WHATSAPP CTA - bottom-right */}
+      {isMobileMenuOpen && (
+        <button
+          type="button"
+          aria-label="Close mobile menu overlay"
+          className="fixed inset-0 z-30 bg-slate-950/60 lg:hidden"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
       <a 
         href={getWhatsAppUrl()} 
         target="_blank" 
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 bg-emerald-500 hover:bg-emerald-600 transition-transform hover:scale-110 text-white p-4 rounded-full shadow-lg flex items-center justify-center group"
+        className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 bg-emerald-500 hover:bg-emerald-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300 transition-transform hover:scale-110 text-white p-4 rounded-full shadow-lg flex items-center justify-center group"
         title="Chat with Ritesh on WhatsApp"
         id="whatsapp-cta"
       >
@@ -351,7 +382,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
         className={`sticky top-0 z-40 backdrop-blur-md ${isDark ? (isScrolled ? "bg-slate-950/95 border-slate-800 shadow-lg shadow-black/20" : "bg-slate-950/80 border-slate-900") : (isScrolled ? "bg-white/95 border-slate-300 shadow-md shadow-slate-900/5" : "bg-white/85 border-slate-200")} border-b transition-colors duration-300`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <a href="#home" className="flex items-center gap-2 group">
+          <a href="#home" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-2 group min-w-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-400 rounded-lg">
             <div className="w-10 h-10 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-lg tracking-wider text-white shadow-md shadow-indigo-500/20 group-hover:bg-indigo-500 transition-colors">
               {site.logoText ? site.logoText.slice(0, 2).toUpperCase() : "RK"}
             </div>
@@ -364,20 +395,17 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
           </a>
 
           {/* DESKTOP LINKS */}
-          <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-            <a href="#about" className={`${t.navLink} transition-colors`}>About</a>
-            <a href="#services" className={`${t.navLink} transition-colors`}>Services</a>
-            <a href="#skills" className={`${t.navLink} transition-colors`}>Skills</a>
-            <a href="#portfolio" className={`${t.navLink} transition-colors`}>Projects</a>
-            <a href="#experience" className={`${t.navLink} transition-colors`}>Experience</a>
-            <a href="#testimonials" className={`${t.navLink} transition-colors`}>Client Buzz</a>
-            <a href="#blog" className={`${t.navLink} transition-colors`}>Blog</a>
-            <a href="#contact" className={`${t.navLink} transition-colors mr-2`}>Get In Touch</a>
+          <nav className="hidden lg:flex items-center gap-6 text-sm font-medium">
+            {navItems.map((item) => (
+              <a key={item.href} href={item.href} className={`${t.navLink} transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-400 rounded`}>
+                {item.label}
+              </a>
+            ))}
             
             {/* Inline Theme Toggle Icon */}
             <button 
               onClick={() => setIsDark(!isDark)}
-              className={`p-1.5 rounded-lg transition-colors ${isDark ? "hover:bg-slate-900 text-amber-400" : "hover:bg-slate-100 text-indigo-600"}`}
+              className={`p-1.5 rounded-lg transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-400 ${isDark ? "hover:bg-slate-900 text-amber-400" : "hover:bg-slate-100 text-indigo-600"}`}
               aria-label="Toggle theme inline"
               title="Switch Theme"
             >
@@ -389,25 +417,62 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
             {/* Action Bar Theme Toggle Icon (Visible always, perfect for Mobile view) */}
             <button 
               onClick={() => setIsDark(!isDark)}
-              className={`p-2.5 rounded-xl transition-colors md:hidden ${isDark ? "bg-slate-900 hover:bg-slate-800 text-amber-400" : "bg-slate-100 hover:bg-slate-200 text-indigo-600 border border-slate-200"}`}
+              className={`p-2.5 min-h-11 min-w-11 rounded-xl transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-400 lg:hidden ${isDark ? "bg-slate-900 hover:bg-slate-800 text-amber-400" : "bg-slate-100 hover:bg-slate-200 text-indigo-600 border border-slate-200"}`}
               aria-label="Toggle theme"
               id="theme-toggle-btn"
             >
               {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            </button>
+            <button
+              type="button"
+              onClick={() => setIsMobileMenuOpen((open) => !open)}
+              aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={isMobileMenuOpen}
+              className={`min-h-11 min-w-11 p-2.5 rounded-xl transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-400 lg:hidden ${isDark ? "bg-slate-900 hover:bg-slate-800 text-slate-200" : "bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200"}`}
+            >
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
 
             <motion.a 
               href="#contact" 
               whileHover={prefersReducedMotion ? undefined : { y: -2, scale: 1.03 }}
               whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
-              className="hidden lg:inline-flex px-4 py-2 text-xs font-bold font-mono tracking-wide uppercase rounded-lg bg-indigo-600 hover:bg-indigo-500 hover:shadow-lg hover:shadow-indigo-500/20 transition-all text-white"
+              className="hidden lg:inline-flex px-4 py-2 text-xs font-bold font-mono tracking-wide uppercase rounded-lg bg-indigo-600 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-400 hover:shadow-lg hover:shadow-indigo-500/20 transition-all text-white"
             >
               Hire Me
             </motion.a>
           </div>
         </div>
+        {isMobileMenuOpen && (
+          <motion.nav
+            initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            className={`absolute left-4 right-4 top-[calc(100%+0.5rem)] z-50 rounded-2xl border p-3 shadow-2xl lg:hidden ${isDark ? "bg-slate-950/98 border-slate-800" : "bg-white border-slate-200"}`}
+          >
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {navItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`min-h-11 rounded-xl px-4 py-3 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400 ${isDark ? "text-slate-200 hover:bg-slate-900" : "text-slate-800 hover:bg-slate-100"}`}
+                >
+                  {item.label}
+                </a>
+              ))}
+              <a
+                href="#contact"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="min-h-11 rounded-xl px-4 py-3 text-center text-sm font-bold font-mono uppercase bg-indigo-600 hover:bg-indigo-500 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400 sm:col-span-2"
+              >
+                Hire Me
+              </a>
+            </div>
+          </motion.nav>
+        )}
       </motion.header>
 
+      <main>
       {/* 1. HERO SECTION */}
       <section id="home" className="relative pt-10 pb-12 md:pt-14 md:pb-16 lg:pt-16 lg:pb-20 px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -428,7 +493,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
               Available for New Freelance Contracts
             </motion.div>
             
-            <motion.h1 className={`text-4xl sm:text-5xl md:text-6xl font-extrabold ${t.textBright} leading-[1.08]`}>
+            <motion.h1 className={`text-4xl md:text-5xl lg:text-6xl font-extrabold ${t.textBright} leading-[1.08]`}>
               {(hero.heading || "Crafting High-Volume Web Automations & SaaS backends").split(" ").map((word: string, index: number) => (
                 <motion.span
                   key={`${word}-${index}`}
@@ -447,14 +512,14 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
               {hero.subheading || "Full-Stack developer with 4+ years of expertise. I turn ideas into reliable high-performing web platforms, scrapers, and dynamic frontends."}
             </motion.p>
 
-            <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-4 pt-2">
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
               <motion.a 
                 href={getWhatsAppUrl()} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 whileHover={prefersReducedMotion ? undefined : { y: -3, scale: 1.02 }}
                 whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
-                className="px-6 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm transition-all hover:-translate-y-0.5 shadow-lg shadow-indigo-500/20 flex items-center gap-2"
+                className="w-full sm:w-auto justify-center px-6 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-400 text-white font-medium text-sm transition-all hover:-translate-y-0.5 shadow-lg shadow-indigo-500/20 flex items-center gap-2"
                 id="hero-cta-primary"
               >
                 {hero.ctaTextPrimary || "Hire Me On WhatsApp"} <ArrowUpRight className="w-4 h-4" />
@@ -463,14 +528,14 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                 href={hero.ctaLinkSecondary || "#portfolio"} 
                 whileHover={prefersReducedMotion ? undefined : { y: -3, scale: 1.02 }}
                 whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
-                className={`px-6 py-3.5 rounded-xl ${isDark ? "bg-slate-900 hover:bg-slate-800 border-slate-800 text-slate-300 hover:text-white" : "bg-white hover:bg-slate-100 border-slate-200 text-slate-800"} border font-medium text-sm transition-all`}
+                className={`w-full sm:w-auto justify-center px-6 py-3.5 rounded-xl ${isDark ? "bg-slate-900 hover:bg-slate-800 border-slate-800 text-slate-300 hover:text-white" : "bg-white hover:bg-slate-100 border-slate-200 text-slate-800"} border font-medium text-sm transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-400 flex`}
                 id="hero-cta-secondary"
               >
                 {hero.ctaTextSecondary || "View Work Portfolio"}
               </motion.a>
             </motion.div>
 
-            <motion.div variants={containerVariants} className={`grid grid-cols-3 gap-6 pt-5 border-t ${isDark ? "border-slate-900" : "border-slate-200"} max-w-lg`}>
+            <motion.div variants={containerVariants} className={`grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 pt-5 border-t ${isDark ? "border-slate-900" : "border-slate-200"} max-w-lg`}>
               <motion.div variants={itemVariants}>
                 <AnimatedCounter value={4} suffix="+ Years" label="Real Results" className={`text-2xl md:text-3xl font-extrabold ${t.textBright}`} />
               </motion.div>
@@ -660,7 +725,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                 </div>
                 <div className={`pt-6 border-t ${isDark ? "border-slate-800/50" : "border-slate-100"} mt-6 flex items-center justify-between`}>
                   <span className={`text-[10px] font-mono tracking-widest uppercase ${t.textMuted}`}>Active Support</span>
-                  <a href="#contact" className="text-xs text-indigo-400 hover:text-indigo-300 font-mono inline-flex items-center gap-1.5">
+                  <a href="#contact" className="text-xs text-indigo-400 hover:text-indigo-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-400 rounded font-mono inline-flex items-center gap-1.5">
                     Discuss Inquiry <ChevronRight className="w-3 h-3" />
                   </a>
                 </div>
@@ -708,15 +773,15 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
             </motion.div>
 
             <div className="lg:col-span-8">
-              <motion.div className="grid grid-cols-1 sm:grid-cols-2 gap-4" variants={containerVariants}>
+              <motion.div className="grid grid-cols-1 lg:grid-cols-2 gap-4" variants={containerVariants}>
                 {skills.map((sk: Skill) => (
                   <motion.div key={sk.id} variants={itemVariants} className={`p-4 rounded-xl ${t.bgCard} border ${t.borderCard} space-y-2`}>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-indigo-500"></span>
-                        <span className={`text-sm font-bold ${t.textBright}`}>{sk.name}</span>
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                      <div className="flex items-start sm:items-center gap-2 min-w-0">
+                        <span className="mt-1.5 sm:mt-0 w-2 h-2 rounded-full bg-indigo-500 shrink-0"></span>
+                        <span className={`text-sm font-bold ${t.textBright} min-w-0 break-words leading-snug`}>{sk.name}</span>
                       </div>
-                      <span className={`font-mono text-xs ${t.textIndigo} font-bold`}>{sk.percentage}%</span>
+                      <span className={`font-mono text-xs ${t.textIndigo} font-bold shrink-0`}>{sk.percentage}%</span>
                     </div>
                     {/* Progress indicator */}
                     <div className={`w-full h-1.5 ${isDark ? "bg-slate-900" : "bg-slate-150"} rounded-full overflow-hidden`}>
@@ -753,7 +818,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
             </div>
 
             {/* Filter buttons */}
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex items-center gap-2 overflow-x-auto pb-2 -mb-2 max-w-full md:flex-wrap md:overflow-visible">
               {projectCategories.map((cat: string) => (
                 <button 
                   key={cat}
@@ -761,7 +826,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                     setFilterCategory(cat);
                     trackVisit(`/portfolio/${cat.toLowerCase().replace(/ /g, "-")}`);
                   }}
-                  className={`relative px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all ${
+                  className={`relative shrink-0 min-h-11 px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-400 ${
                     filterCategory === cat 
                       ? "text-white font-bold" 
                       : isDark 
@@ -840,7 +905,6 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                         href={proj.projectUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label={`View ${proj.title} live website (opens in new tab)`}
                         className={`text-xs ${isDark ? "text-white" : "text-slate-900"} hover:text-indigo-400 font-mono inline-flex items-center gap-1 hover:underline group/link`}
                       >
                         View Project Details 
@@ -863,7 +927,6 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                         href={proj.projectUrl} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        aria-label={`Visit ${proj.title} external live link (opens in new tab)`}
                         className={`text-[10px] ${t.textMuted} hover:text-indigo-500 transition-colors`}
                       >
                         Live Link ↗
@@ -913,11 +976,11 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                 <Briefcase className="w-5 h-5 text-indigo-400" /> Work History
               </h3>
               
-              <div className={`space-y-6 border-l ${isDark ? "border-slate-800" : "border-slate-200"} pl-6 relative`}>
+              <div className={`space-y-6 border-l ${isDark ? "border-slate-800" : "border-slate-200"} pl-5 sm:pl-6 relative`}>
                 {experience.map((exp: Experience, idx: number) => (
                   <motion.div key={exp.id || idx} className="relative space-y-2" variants={itemVariants}>
                     {/* Bullet marker */}
-                    <div className={`absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full ${t.bulletBg} flex items-center justify-center`}>
+                    <div className={`absolute -left-[27px] sm:-left-[31px] top-1.5 w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full ${t.bulletBg} flex items-center justify-center`}>
                       <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
                     </div>
 
@@ -999,7 +1062,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
             <div className="w-12 h-1 bg-indigo-500 mx-auto rounded-full"></div>
           </motion.div>
 
-          <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-6" variants={containerVariants}>
+          <motion.div className="grid grid-cols-1 lg:grid-cols-2 gap-6" variants={containerVariants}>
             {testimonials.map((test: Testimonial) => (
               <motion.div key={test.id} variants={itemVariants} whileHover={prefersReducedMotion ? undefined : { y: -5 }} className={`p-6 rounded-2xl ${t.bgCard} border ${t.borderCard} hover:border-indigo-500/20 transition-all relative flex flex-col justify-between`}>
                 
@@ -1042,7 +1105,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
             <div className="w-12 h-1 bg-indigo-500 mx-auto rounded-full"></div>
           </motion.div>
 
-          <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-6" variants={containerVariants}>
+          <motion.div className="grid grid-cols-1 lg:grid-cols-2 gap-6" variants={containerVariants}>
             {blogs.map((post: Blog) => (
               <motion.div 
                 key={post.id}
@@ -1077,7 +1140,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                       setSelectedBlog(post);
                       trackVisit(`/blog/${post.slug}`);
                     }}
-                    className="text-xs font-mono font-bold text-indigo-400 hover:text-indigo-300"
+                    className="text-xs font-mono font-bold text-indigo-400 hover:text-indigo-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-400 rounded"
                   >
                     Read Full Blueprint Article ↗
                   </button>
@@ -1162,7 +1225,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                       value={contactForm.name}
                       onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
                       placeholder="e.g. David Harrison"
-                      className={`w-full ${isDark ? "bg-slate-950 border-slate-800 text-white" : "bg-white border-slate-200 text-slate-800"} focus:border-indigo-500 outline-none rounded-xl px-4 py-3 text-xs`}
+                      className={`w-full min-h-11 border ${isDark ? "bg-slate-950 border-slate-800 text-white" : "bg-white border-slate-200 text-slate-800"} focus:border-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400 rounded-xl px-4 py-3 text-xs`}
                     />
                   </div>
                   <div className="space-y-2">
@@ -1173,7 +1236,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                       value={contactForm.email}
                       onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
                       placeholder="e.g. david@media.co.uk"
-                      className={`w-full ${isDark ? "bg-slate-950 border-slate-800 text-white" : "bg-white border-slate-200 text-slate-800"} focus:border-indigo-500 outline-none rounded-xl px-4 py-3 text-xs`}
+                      className={`w-full min-h-11 border ${isDark ? "bg-slate-950 border-slate-800 text-white" : "bg-white border-slate-200 text-slate-800"} focus:border-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400 rounded-xl px-4 py-3 text-xs`}
                     />
                   </div>
                 </div>
@@ -1186,7 +1249,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                       value={contactForm.phone}
                       onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
                       placeholder="e.g. +44 7911 XXXXXX"
-                      className={`w-full ${isDark ? "bg-slate-950 border-slate-800 text-white" : "bg-white border-slate-200 text-slate-800"} focus:border-indigo-500 outline-none rounded-xl px-4 py-3 text-xs`}
+                      className={`w-full min-h-11 border ${isDark ? "bg-slate-950 border-slate-800 text-white" : "bg-white border-slate-200 text-slate-800"} focus:border-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400 rounded-xl px-4 py-3 text-xs`}
                     />
                   </div>
                   <div className="space-y-2">
@@ -1196,7 +1259,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                       value={contactForm.subject}
                       onChange={(e) => setContactForm({ ...contactForm, subject: e.target.value })}
                       placeholder="e.g. Python scraper setup"
-                      className={`w-full ${isDark ? "bg-slate-950 border-slate-800 text-white" : "bg-white border-slate-200 text-slate-800"} focus:border-indigo-500 outline-none rounded-xl px-4 py-3 text-xs`}
+                      className={`w-full min-h-11 border ${isDark ? "bg-slate-950 border-slate-800 text-white" : "bg-white border-slate-200 text-slate-800"} focus:border-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400 rounded-xl px-4 py-3 text-xs`}
                     />
                   </div>
                 </div>
@@ -1209,7 +1272,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                     value={contactForm.message}
                     onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
                     placeholder="Describe your goals, tech expectations, timeline bounds..."
-                    className={`w-full ${isDark ? "bg-slate-950 border-slate-800 text-white" : "bg-white border-slate-200 text-slate-800"} focus:border-indigo-500 outline-none rounded-xl p-4 text-xs resize-none`}
+                    className={`w-full border ${isDark ? "bg-slate-950 border-slate-800 text-white" : "bg-white border-slate-200 text-slate-800"} focus:border-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400 rounded-xl p-4 text-xs resize-none`}
                   ></textarea>
                 </div>
 
@@ -1227,7 +1290,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                   type="submit" 
                   disabled={submittingContact}
                   whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
-                  className="w-full py-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-mono font-bold tracking-wider text-xs uppercase transition-all flex items-center justify-center gap-2"
+                  className="w-full min-h-11 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-400 text-white font-mono font-bold tracking-wider text-xs uppercase transition-all flex items-center justify-center gap-2"
                   id="submit-contact-btn"
                 >
                   {submittingContact ? (
@@ -1249,22 +1312,24 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
       </motion.section>
 
       {/* FOOTER */}
+      </main>
+
       <footer className={`${isDark ? "bg-slate-950 border-slate-900" : "bg-slate-100 border-slate-200"} border-t py-16 px-4 sm:px-6 lg:px-8`}>
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           
           <div className="space-y-4">
             <span className={`font-mono text-base font-extrabold ${t.textBright}`}>
               {site.logoText || "Ritesh"}{" "}
-              <span className="text-indigo-400 font-light">{site.logoSubtext || "Kumar"}</span>
+              <span className={`${t.textIndigo} font-light`}>{site.logoSubtext || "Kumar"}</span>
             </span>
             <p className={`text-xs ${t.textMuted} leading-relaxed md:max-w-xs`}>
               Providing modern enterprise full-stack development, headless API integrations, and robust automated workflows contextually since 2021.
             </p>
             <div className="flex gap-3">
-              <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className={`p-2 rounded ${isDark ? "bg-slate-900 border-slate-800 text-slate-400 hover:bg-slate-800 hover:text-indigo-400" : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-indigo-500"} border transition-colors`}>
+              <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Open Ritesh Kumar LinkedIn profile" className={`min-h-11 min-w-11 p-2 rounded flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-400 ${isDark ? "bg-slate-900 border-slate-800 text-slate-400 hover:bg-slate-800 hover:text-indigo-400" : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-indigo-500"} border transition-colors`}>
                 <Linkedin className="w-4 h-4" />
               </a>
-              <a href={site.socialGitHub || "https://github.com/riteshkumarwebdev"} target="_blank" rel="noopener noreferrer" className={`p-2 rounded ${isDark ? "bg-slate-900 border-slate-800 text-slate-400 hover:bg-slate-800 hover:text-indigo-400" : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-indigo-500"} border transition-colors`}>
+              <a href={site.socialGitHub || "https://github.com/riteshkumarwebdev"} target="_blank" rel="noopener noreferrer" aria-label="Open Ritesh Kumar GitHub profile" className={`min-h-11 min-w-11 p-2 rounded flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-400 ${isDark ? "bg-slate-900 border-slate-800 text-slate-400 hover:bg-slate-800 hover:text-indigo-400" : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-indigo-500"} border transition-colors`}>
                 <Github className="w-4 h-4" />
               </a>
             </div>
@@ -1283,10 +1348,10 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
           <div>
             <h4 className={`text-xs font-mono font-bold ${isDark ? "text-slate-400" : "text-slate-700"} uppercase tracking-wider mb-4`}>Quick Links</h4>
             <ul className={`space-y-2 text-xs ${t.textMuted} font-mono`}>
-              <li><a href="#about" className="hover:text-indigo-400">Bio Profile</a></li>
-              <li><a href="#services" className="hover:text-indigo-400">Our Services</a></li>
-              <li><a href="#skills" className="hover:text-indigo-400">Technical Skill Matrix</a></li>
-              <li><a href="#portfolio" className="hover:text-indigo-400">Past Projects</a></li>
+              <li><a href="#about" className="hover:text-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-400 rounded">Bio Profile</a></li>
+              <li><a href="#services" className="hover:text-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-400 rounded">Our Services</a></li>
+              <li><a href="#skills" className="hover:text-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-400 rounded">Technical Skill Matrix</a></li>
+              <li><a href="#portfolio" className="hover:text-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-400 rounded">Past Projects</a></li>
             </ul>
           </div>
 
@@ -1294,7 +1359,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
 
         <div className={`max-w-7xl mx-auto mt-12 pt-8 border-t ${isDark ? "border-slate-900/60" : "border-slate-200"} flex flex-col sm:flex-row items-center justify-between gap-4 text-xs ${t.textMuted} font-mono`}>
           <p>{db?.site?.footerText || "© 2026 Ritesh Kumar. All rights reserved."}</p>
-          <a href="#home" className="hover:text-indigo-500 flex items-center gap-1">
+          <a href="#home" className="min-h-11 hover:text-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-400 rounded flex items-center gap-1">
             Back to Top <ArrowUp className="w-3.5 h-3.5" />
           </a>
         </div>
@@ -1496,7 +1561,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                 <a 
                   href="#contact" 
                   onClick={() => setSelectedBlog(null)}
-                  className="px-4 py-2 text-xs font-mono font-bold bg-indigo-600 hover:bg-indigo-5050 text-white rounded-lg"
+                  className="px-4 py-2 text-xs font-mono font-bold bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-400"
                 >
                   Ask Me Question
                 </a>

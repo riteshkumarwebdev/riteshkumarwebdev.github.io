@@ -4,3 +4,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
 }
+
+.light .text-indigo-400 {
+  color: #4338ca;
+}
