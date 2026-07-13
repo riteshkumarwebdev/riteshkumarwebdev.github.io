@@ -19,6 +19,18 @@ interface PortfolioViewProps {
 }
 
 const easeOutExpo = [0.22, 1, 0.36, 1] as const;
+const WHATSAPP_PHONE = "917463867570";
+const WHATSAPP_MESSAGE = "Hi Ritesh, I have a project to discuss.";
+const RESUME_PATH = "/Ritesh-Kumar-Resume.pdf";
+
+function getWhatsAppUrl(message = WHATSAPP_MESSAGE): string {
+  return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
+}
+
+function isUsableExternalUrl(url?: string): boolean {
+  if (!url) return false;
+  return !/example\.com|trackandclaim\.com/i.test(url);
+}
 
 function AnimatedCounter({
   value,
@@ -183,13 +195,13 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate: Name is required, either Email or Phone is required, Message details is required.
+    // Validate: Name, email, and message details are required. Phone stays optional.
     if (!contactForm.name.trim()) {
       setContactNotification({ type: "error", text: "Please key in your Full Name." });
       return;
     }
-    if (!contactForm.email.trim() && !contactForm.phone.trim()) {
-      setContactNotification({ type: "error", text: "Please provide either an Email or Phone so Ritesh can reach you." });
+    if (!contactForm.email.trim()) {
+      setContactNotification({ type: "error", text: "Please provide your Email Address so Ritesh can reach you." });
       return;
     }
     if (!contactForm.message.trim()) {
@@ -209,7 +221,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
       `Budget: ${budgetValue}\n` +
       `Project Details: ${contactForm.message}`;
 
-    const whatsappUrl = `https://wa.me/917463867570?text=${encodeURIComponent(formattedMessage)}`;
+    const whatsappUrl = getWhatsAppUrl(formattedMessage);
     
     // Open in a new tab
     window.open(whatsappUrl, "_blank", "noopener,noreferrer");
@@ -260,7 +272,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
     linkedin: "https://www.linkedin.com/in/ritesh-kumar-freelancer",
     location: "Ahmedabad, Gujarat, India",
     profileImage: assetPath("assets/ritesh_profile.jpg"),
-    resumeUrl: "#"
+    resumeUrl: assetPath(RESUME_PATH)
   };
   const hero = db?.hero || { heading: "Building Scaling Apps", subheading: "4+ Years of Full-Stack Excellence" };
   const services = db?.services || [];
@@ -271,7 +283,8 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
   const certifications = db?.certifications || [];
   const testimonials = db?.testimonials || [];
   const blogs = db?.blogs || [];
-  const site = db?.site || { logoText: "Ritesh", logoSubtext: "Kumar", socialWhatsApp: "https://wa.me/917463867570" };
+  const site = db?.site || { logoText: "Ritesh", logoSubtext: "Kumar", socialWhatsApp: getWhatsAppUrl() };
+  const resumeHref = profile.resumeUrl && profile.resumeUrl !== "#" ? profile.resumeUrl : assetPath(RESUME_PATH);
 
   // Generate clean categories list for portfolio projects tab
   const projectCategories = ["All", ...Array.from(new Set(projects.map((p: any) => p.category)))];
@@ -317,7 +330,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
 
       {/* FLOATING WHATSAPP CTA - bottom-right */}
       <a 
-        href={site.socialWhatsApp || "https://wa.me/917463867570"} 
+        href={getWhatsAppUrl()} 
         target="_blank" 
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 bg-emerald-500 hover:bg-emerald-600 transition-transform hover:scale-110 text-white p-4 rounded-full shadow-lg flex items-center justify-center group"
@@ -436,7 +449,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
 
             <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-4 pt-2">
               <motion.a 
-                href={hero.ctaLinkPrimary || "https://wa.me/917463867570"} 
+                href={getWhatsAppUrl()} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 whileHover={prefersReducedMotion ? undefined : { y: -3, scale: 1.02 }}
@@ -537,10 +550,14 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                     <MapPin className="w-4 h-4 text-slate-500" /> {profile.location}
                   </div>
                   <div className="flex items-center gap-2">
-                    <Mail className="w-4 h-4 text-slate-500" /> {profile.email}
+                    <Mail className="w-4 h-4 text-slate-500" />
+                    <a href={`mailto:${profile.email}`} className="hover:text-indigo-400 transition-colors">{profile.email}</a>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Linkedin className="w-4 h-4 text-slate-500" /> {profile.linkedin ? "Connected Profile" : "linkedin.com/in/ritesh-kumar"}
+                    <Linkedin className="w-4 h-4 text-slate-500" />
+                    <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors">
+                      {profile.linkedin ? "Connected Profile" : "linkedin.com/in/ritesh-kumar"}
+                    </a>
                   </div>
                 </div>
               </div>
@@ -596,7 +613,8 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                   </div>
                 </div>
                 <a 
-                  href={profile.resumeUrl || "#"} 
+                  href={resumeHref} 
+                  download="Ritesh-Kumar-Resume.pdf"
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 transition-colors text-white text-xs font-mono font-bold tracking-wide uppercase text-center"
@@ -817,7 +835,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                   </div>
 
                   <div className={`pt-4 border-t ${t.borderCard} flex items-center justify-between`}>
-                    {proj.projectUrl && !proj.projectUrl.includes("example.com") ? (
+                    {isUsableExternalUrl(proj.projectUrl) ? (
                       <a 
                         href={proj.projectUrl}
                         target="_blank"
@@ -840,7 +858,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                       </button>
                     )}
 
-                    {proj.projectUrl && (
+                    {isUsableExternalUrl(proj.projectUrl) && (
                       <a 
                         href={proj.projectUrl} 
                         target="_blank" 
@@ -1097,7 +1115,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                 </div>
                 <div>
                   <h4 className="text-xs font-mono font-bold text-slate-500 uppercase">Primary Inbox</h4>
-                  <p className={`text-xs ${isDark ? "text-slate-200" : "text-slate-800 font-medium"}`}>{profile.email}</p>
+                  <a href={`mailto:${profile.email}`} className={`text-xs ${isDark ? "text-slate-200 hover:text-indigo-300" : "text-slate-800 font-medium hover:text-indigo-600"} transition-colors`}>{profile.email}</a>
                 </div>
               </div>
 
@@ -1107,7 +1125,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                 </div>
                 <div>
                   <h4 className="text-xs font-mono font-bold text-slate-500 uppercase">WhatsApp Channel</h4>
-                  <p className={`text-xs ${isDark ? "text-slate-200" : "text-slate-800 font-medium"}`}>{profile.whatsapp || "Available Directly"}</p>
+                  <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer" className={`text-xs ${isDark ? "text-slate-200 hover:text-indigo-300" : "text-slate-800 font-medium hover:text-indigo-600"} transition-colors`}>{profile.whatsapp || `+${WHATSAPP_PHONE}`}</a>
                 </div>
               </div>
 
@@ -1246,7 +1264,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
               <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className={`p-2 rounded ${isDark ? "bg-slate-900 border-slate-800 text-slate-400 hover:bg-slate-800 hover:text-indigo-400" : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-indigo-500"} border transition-colors`}>
                 <Linkedin className="w-4 h-4" />
               </a>
-              <a href={site.socialGitHub || "https://github.com/ritesh-kumar"} target="_blank" rel="noopener noreferrer" className={`p-2 rounded ${isDark ? "bg-slate-900 border-slate-800 text-slate-400 hover:bg-slate-800 hover:text-indigo-400" : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-indigo-500"} border transition-colors`}>
+              <a href={site.socialGitHub || "https://github.com/riteshkumarwebdev"} target="_blank" rel="noopener noreferrer" className={`p-2 rounded ${isDark ? "bg-slate-900 border-slate-800 text-slate-400 hover:bg-slate-800 hover:text-indigo-400" : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-indigo-500"} border transition-colors`}>
                 <Github className="w-4 h-4" />
               </a>
             </div>
@@ -1363,7 +1381,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                   </div>
 
                   <div className="pt-4 border-t border-slate-800 space-y-2.5">
-                    {selectedProject.projectUrl && (
+                    {isUsableExternalUrl(selectedProject.projectUrl) && (
                       <a 
                         href={selectedProject.projectUrl} 
                         target="_blank" 
@@ -1373,7 +1391,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                         Launch Direct URL ↗
                       </a>
                     )}
-                    {selectedProject.githubUrl && (
+                    {isUsableExternalUrl(selectedProject.githubUrl) && (
                       <a 
                         href={selectedProject.githubUrl} 
                         target="_blank" 
