@@ -1,0 +1,706 @@
+import fs from "fs";
+import path from "path";
+
+// Entities Definition
+export interface Profile {
+  name: string;
+  title: string;
+  bio: string;
+  email: string;
+  phone: string;
+  whatsapp: string;
+  linkedin: string;
+  portfolioUrl: string;
+  location: string;
+  profileImage: string;
+  resumeUrl: string;
+}
+
+export interface HeroSection {
+  heading: string;
+  subheading: string;
+  ctaTextPrimary: string;
+  ctaLinkPrimary: string;
+  ctaTextSecondary: string;
+  ctaLinkSecondary: string;
+  backgroundImage: string;
+  status: boolean;
+}
+
+export interface Service {
+  id: string;
+  title: string;
+  description: string;
+  icon: string; // lucide icon name
+  displayOrder: number;
+  status: boolean;
+}
+
+export interface Skill {
+  id: string;
+  name: string;
+  category: "Frontend" | "Backend" | "Database" | "Scraping & Automation" | "Tools & Cloud";
+  percentage: number;
+  icon: string;
+  status: boolean;
+}
+
+export interface Project {
+  id: string;
+  title: string;
+  slug: string;
+  category: string;
+  techStack: string[];
+  description: string;
+  features: string[];
+  clientName: string;
+  projectUrl: string;
+  githubUrl: string;
+  thumbnail: string;
+  gallery: string[];
+  featured: boolean;
+  status: boolean;
+  seoTitle: string;
+  seoDescription: string;
+}
+
+export interface Experience {
+  id: string;
+  companyName: string;
+  role: string;
+  startDate: string;
+  endDate: string;
+  location: string;
+  description: string;
+  techStack: string[];
+  displayOrder: number;
+}
+
+export interface Education {
+  id: string;
+  institute: string;
+  degree: string;
+  year: string;
+  description: string;
+}
+
+export interface Certification {
+  id: string;
+  name: string;
+  issuer: string;
+  year: string;
+  url: string;
+  status: boolean;
+}
+
+export interface Testimonial {
+  id: string;
+  clientName: string;
+  company: string;
+  rating: number;
+  message: string;
+  photo: string;
+  status: boolean;
+}
+
+export interface Blog {
+  id: string;
+  title: string;
+  slug: string;
+  category: string;
+  content: string;
+  featuredImage: string;
+  tags: string[];
+  status: "draft" | "published";
+  createdAt: string;
+  seoTitle: string;
+  seoDescription: string;
+}
+
+export interface ContactInquiry {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+  date: string;
+  read: boolean;
+  replied: boolean;
+}
+
+export interface VisitorLog {
+  id: string;
+  ip: string;
+  userAgent: string;
+  browser: string;
+  deviceType: "mobile" | "tablet" | "desktop";
+  os: string;
+  referrer: string;
+  pageUrl: string;
+  visitTime: string;
+}
+
+export interface SEOSettings {
+  metaTitle: string;
+  metaDescription: string;
+  keywords: string;
+  ogImage: string;
+  googleAnalytics: string;
+  customHeaderScripts: string;
+  customFooterScripts: string;
+}
+
+export interface SiteSettings {
+  logoText: string;
+  logoSubtext: string;
+  websiteName: string;
+  footerText: string;
+  socialLinkedIn: string;
+  socialGitHub: string;
+  socialWhatsApp: string;
+  socialEmail: string;
+  maintenanceMode: boolean;
+  themeColor: string; // e.g., "indigo"
+}
+
+// Full Database Schema
+export interface Database {
+  profile: Profile;
+  hero: HeroSection;
+  services: Service[];
+  skills: Skill[];
+  projects: Project[];
+  experience: Experience[];
+  education: Education[];
+  certifications: Certification[];
+  testimonials: Testimonial[];
+  blogs: Blog[];
+  contacts: ContactInquiry[];
+  visitors: VisitorLog[];
+  seo: SEOSettings;
+  site: SiteSettings;
+}
+
+// Config file path
+const DATA_DIR = path.join(process.cwd(), "data");
+const DB_FILE = path.join(DATA_DIR, "database.json");
+
+// Helper: Ensure Data folder exists
+function ensureDataDir() {
+  if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  }
+}
+
+// Default Seed Data
+const defaultDb: Database = {
+  profile: {
+    name: "Ritesh Kumar",
+    title: "Freelance Full-Stack Web Developer",
+    bio: "Need a website or planning to build a powerful, scalable web application? I'm Ritesh Kumar, a Freelance Full Stack Web Developer for Hire with 4+ years of experience building custom websites, web applications, SaaS platforms, and e-commerce solutions for startups, agencies, and enterprises worldwide. I help businesses transform ideas into high-performing, scalable, and secure digital products. I work both as an individual developer and lead a team of 10+ experienced developers.",
+    email: "ritesh2001stm@gmail.com",
+    phone: "+91 74638 67570",
+    whatsapp: "+917463867570",
+    linkedin: "https://www.linkedin.com/in/ritesh-kumar-freelancer",
+    portfolioUrl: "https://vivanwebsolution.com/portfolio/",
+    location: "Ahmedabad, Gujarat, India (Available Worldwide)",
+    profileImage: "",
+    resumeUrl: ""
+  },
+  hero: {
+    heading: "Building Powerful, Scalable Custom Web Solutions",
+    subheading: "Freelance Full-Stack Developer with 4+ years of experience crafting SaaS platforms, scrapers, APIs, and e-commerce websites.",
+    ctaTextPrimary: "Hire Me On WhatsApp",
+    ctaLinkPrimary: "https://wa.me/917463867570?text=Hi%2520Ritesh%252C%2520I%2520have%2520a%2520project%2520to%2520discuss",
+    ctaTextSecondary: "View Portofolio",
+    ctaLinkSecondary: "#portfolio",
+    backgroundImage: "",
+    status: true
+  },
+  services: [
+    {
+      id: "srv-1",
+      title: "Freelance Custom Web Development",
+      description: "Custom website development from scratch tailored perfectly to your business requirements. SEO-friendly and highly optimized code.",
+      icon: "Code",
+      displayOrder: 1,
+      status: true
+    },
+    {
+      id: "srv-2",
+      title: "Full Stack Web Enterprise Applications",
+      description: "Robust frontend + backend modules leveraging technologies like PHP (Symfony/Laravel), Node.js, and React.js for clean solutions.",
+      icon: "Cpu",
+      displayOrder: 2,
+      status: true
+    },
+    {
+      id: "srv-3",
+      title: "SaaS & Dashboard Software Development",
+      description: "High-performing Software-as-a-Service platforms, interactive dashboards, CRM workflows, and robust management systems.",
+      icon: "Layers",
+      displayOrder: 3,
+      status: true
+    },
+    {
+      id: "srv-4",
+      title: "E-Commerce Integrations",
+      description: "Custom storefronts and systems on top of Shopify, WooCommerce, or custom databases with secured payment integration gateway loops.",
+      icon: "ShoppingBag",
+      displayOrder: 4,
+      status: true
+    },
+    {
+      id: "srv-5",
+      title: "API Development & Third-Party Integration",
+      description: "Building production-grade secured REST / GraphQL APIs and seamlessly integrating third-party systems for seamless data transfer.",
+      icon: "RefreshCw",
+      displayOrder: 5,
+      status: true
+    },
+    {
+      id: "srv-6",
+      title: "Python Web Scraping & Workflow Automation",
+      description: "High-volume data mining and extraction systems utilizing Scrapy, Selenium with rotation proxies, and clean CSV/Excel output.",
+      icon: "Workflow",
+      displayOrder: 6,
+      status: true
+    }
+  ],
+  skills: [
+    { id: "sk-1", name: "React.js / Next.js", category: "Frontend", percentage: 95, icon: "React", status: true },
+    { id: "sk-2", name: "TypeScript / JavaScript", category: "Frontend", percentage: 95, icon: "Code", status: true },
+    { id: "sk-3", name: "PHP (Symfony & Laravel)", category: "Backend", percentage: 90, icon: "Server", status: true },
+    { id: "sk-4", name: "Node.js (Express)", category: "Backend", percentage: 92, icon: "Terminal", status: true },
+    { id: "sk-5", name: "ASP.NET Core (C#)", category: "Backend", percentage: 80, icon: "Cpu", status: true },
+    { id: "sk-6", name: "Python / Automation", category: "Scraping & Automation", percentage: 95, icon: "Play", status: true },
+    { id: "sk-7", name: "Scrapy / Selenium / BS4", category: "Scraping & Automation", percentage: 95, icon: "GitCommit", status: true },
+    { id: "sk-8", name: "MySQL & PostgreSQL", category: "Database", percentage: 88, icon: "Database", status: true },
+    { id: "sk-9", name: "MongoDB", category: "Database", percentage: 85, icon: "Database", status: true },
+    { id: "sk-10", name: "Git / CI-CD Pipelines", category: "Tools & Cloud", percentage: 90, icon: "GitPullRequest", status: true },
+    { id: "sk-11", name: "AWS & Azure Services", category: "Tools & Cloud", percentage: 80, icon: "Cloud", status: true },
+    { id: "sk-12", name: "REST / GraphQL APIs", category: "Tools & Cloud", percentage: 93, icon: "RefreshCw", status: true }
+  ],
+  projects: [
+    {
+      id: "proj-1",
+      title: "OmniScrape - Large-Scale Retail Monitoring",
+      slug: "omniscrape-scale-retail-monitoring",
+      category: "Python Automation",
+      techStack: ["Python", "Scrapy", "Selenium", "PostgreSQL", "REST APIs"],
+      description: "A secure and highly distributed data extraction system that tracks 50,000+ SKUs across multiple major international e-commerce directories in real-time. Leverages sophisticated headless browsers, automated browser profiles, proxy rotation, and smart bypass techniques to scrape accurate retail lists with continuous health logs.",
+      features: [
+        "Proxy rotation and automatic header spoofing logs",
+        "Durable PostgreSQL schema storing product listings and historic pricing trends",
+        "Trigger alarms and alerts on system failure or layout changes",
+        "Data export to Google Sheets and external custom endpoints"
+      ],
+      clientName: "Enterprise Brand Monitor",
+      projectUrl: "https://omniscrape-demo.example.com",
+      githubUrl: "https://github.com/ritesh-kumar/omniscrape-demo",
+      thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
+      gallery: [
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800"
+      ],
+      featured: true,
+      status: true,
+      seoTitle: "OmniScrape E-commerce Scraper Portfolio - Ritesh Kumar",
+      seoDescription: "Automated real-time scraping system built with Python, Scrapy, and Selenium tracking millions of items monthly."
+    },
+    {
+      id: "proj-2",
+      title: "Apex CRM & Client Portal Custom SaaS",
+      slug: "apex-crm-portal-custom-saas",
+      category: "Full Stack Development",
+      techStack: ["PHP", "Symfony", "React.js", "MySQL", "Tailwind CSS"],
+      description: "A premium business workflows platform custom-built for an advertising agency to handle customer onboarding, invoicing schedules, secure storage drives, and real-time support chat. Complete with a secure Symfony-powered administrative core which manages project pipelines, ticket queues, and roles authorization.",
+      features: [
+        "Bespoke single-page client interface built with React and Tailwind CSS",
+        "Comprehensive project pipeline logs and financial invoicing charts",
+        "Integrated ticket tracking with custom automatic email response notifications",
+        "Secured roles authorization with fine-grained admin filters"
+      ],
+      clientName: "InnoMedia Agency Ltd",
+      projectUrl: "https://apexcrm.example.com",
+      githubUrl: "",
+      thumbnail: "https://images.unsplash.com/photo-1508873535684-277a3cbcc4e8?auto=format&fit=crop&q=80&w=800",
+      gallery: [
+        "https://images.unsplash.com/photo-1508873535684-277a3cbcc4e8?auto=format&fit=crop&q=80&w=800"
+      ],
+      featured: true,
+      status: true,
+      seoTitle: "Apex CRM Agency SaaS Portfolio - Ritesh Kumar",
+      seoDescription: "Secure business CRM platform built using PHP Symfony, MySQL, and dynamic React modules."
+    },
+    {
+      id: "proj-3",
+      title: "SwiftStore - Customized Headless E-commerce",
+      slug: "swiftstore-headless-ecommerce",
+      category: "E-Commerce",
+      techStack: ["Next.js", "TypeScript", "Node.js", "MongoDB", "Stripe API"],
+      description: "A fast, headless Shopify store variant configured in Next.js. Equipped with premium layout optimization patterns, lightning-fast static item search filters, instant checkout tunnels via Stripe and PayPal, and a customizable CMS allowing product customizer options.",
+      features: [
+        "Static site rendering yielding top SEO ranks and sub-second page loads",
+        "Interactive item filters on sizing, brand, tags, and colors",
+        "Integrated secure token payment portals (Stripe checkout loops)",
+        "Backend webhooks syncing fulfillment items with physical inventories automatically"
+      ],
+      clientName: "SwiftGear Apparel",
+      projectUrl: "https://swiftgear-store.example.com",
+      githubUrl: "https://github.com/ritesh-kumar/swiftstore-headless",
+      thumbnail: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&q=80&w=800",
+      gallery: [
+        "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&q=80&w=800"
+      ],
+      featured: false,
+      status: true,
+      seoTitle: "SwiftStore Headless NextJS Shop - Ritesh Kumar",
+      seoDescription: "Modern serverless headless shop built using Next.js and Tailwind, integrated with Stripe Payments."
+    },
+    {
+      id: "proj-4",
+      title: "Foundation Environmental",
+      slug: "foundation-environmental",
+      category: "Client Website",
+      techStack: ["WordPress/CMS", "Responsive Design", "Performance Optimization", "SEO"],
+      description: "Professional environmental services platform. Handled design implementation, content structuring, performance optimization, and responsive functionality across desktop and tablet.",
+      features: [
+        "WordPress content management with highly structured environmental reports",
+        "Full layout responsiveness spanning desktop, tablet, and mobile devices",
+        "Speed optimization and advanced local search engine optimizations"
+      ],
+      clientName: "Foundation Environmental",
+      projectUrl: "https://foundationenv.com/",
+      githubUrl: "",
+      thumbnail: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800",
+      gallery: [
+        "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800"
+      ],
+      featured: false,
+      status: true,
+      seoTitle: "Foundation Environmental Project - Ritesh Kumar",
+      seoDescription: "Professional environmental services website designed and optimized by Ritesh Kumar."
+    },
+    {
+      id: "proj-5",
+      title: "Afrikeyez Football — Transfers Section",
+      slug: "afrikeyez-football-transfers",
+      category: "Client Website",
+      techStack: ["UI/UX", "Sports Media", "Performance", "Responsive"],
+      description: "African football news platform. Built and maintained the Transfers section — page layout, real-time content presentation, and cross-device responsiveness for transfer updates.",
+      features: [
+        "Real-time sports media layouts and content scheduling integration",
+        "Dynamic feed display optimized for high-traffic mobile users",
+        "High-performance media streaming and optimized asset deliverability"
+      ],
+      clientName: "Afrikeyez Football",
+      projectUrl: "https://www.afrikeyezfootball.com/transferts",
+      githubUrl: "",
+      thumbnail: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&q=80&w=800",
+      gallery: [
+        "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&q=80&w=800"
+      ],
+      featured: false,
+      status: true,
+      seoTitle: "Afrikeyez Football Transfers - Ritesh Kumar",
+      seoDescription: "African football transfers section built and optimized by Ritesh Kumar."
+    },
+    {
+      id: "proj-6",
+      title: "IES University Website",
+      slug: "ies-university-website",
+      category: "Client Website",
+      techStack: ["Education", "CMS", "Admissions Portal", "Responsive"],
+      description: "Modern university website covering admissions, courses, campus information, and student-focused features for a leading engineering college in Bhopal.",
+      features: [
+        "Dynamic Admissions Portal built for seamless student onboarding",
+        "Structured information architectures of campus departments and curriculums",
+        "Robust enterprise Content Management integration supporting daily updates"
+      ],
+      clientName: "IES University, Bhopal",
+      projectUrl: "https://www.iesuniversity.ac.in/",
+      githubUrl: "",
+      thumbnail: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=800",
+      gallery: [
+        "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=800"
+      ],
+      featured: false,
+      status: true,
+      seoTitle: "IES University Academic Website - Ritesh Kumar",
+      seoDescription: "Full-scale educational enterprise web portal for IES University, Bhopal."
+    },
+    {
+      id: "proj-7",
+      title: "RKBids — Tender, GeM & E-Procurement Services",
+      slug: "rkbids-e-procurement-services",
+      category: "SaaS & Dashboard",
+      techStack: ["Bidding System", "Real-time Data", "UI Enhancements", "Backend"],
+      description: "Online bidding and auction platform managing listings, bids, and real-time user interactions. Contributed UI enhancements, bug fixes, backend support, and cross-browser stability.",
+      features: [
+        "Cross-browser and legacy system compatibility adjustments",
+        "Bid management logs with dynamic updates",
+        "Upgraded frontend responsive interactions and styling tweaks"
+      ],
+      clientName: "RKBids Consultancy",
+      projectUrl: "https://rkbids.com/",
+      githubUrl: "",
+      thumbnail: "https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?auto=format&fit=crop&q=80&w=800",
+      gallery: [
+        "https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?auto=format&fit=crop&q=80&w=800"
+      ],
+      featured: false,
+      status: true,
+      seoTitle: "RKBids Procurement SaaS - Ritesh Kumar",
+      seoDescription: "Tender and bidding consultation platform optimized by Ritesh Kumar."
+    },
+    {
+      id: "proj-8",
+      title: "Track & Claim Platform",
+      slug: "track-claim-platform",
+      category: "SaaS & Dashboard",
+      techStack: ["Dashboard", "Claims Management", "Workflow Automation"],
+      description: "Centralized dashboard for managing claims, tracking processes, and operational workflows. Improved UI components, performance, and reliability for internal/admin users.",
+      features: [
+        "Secured roles workflow tracker and status change logs",
+        "Optimized client analytics visual reports and listings search",
+        "Improved internal database response queues and file systems"
+      ],
+      clientName: "India Lost & Found",
+      projectUrl: "https://trackandclaim.com/",
+      githubUrl: "",
+      thumbnail: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800",
+      gallery: [
+        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800"
+      ],
+      featured: false,
+      status: true,
+      seoTitle: "Track & Claim SaaS Dashboard - Ritesh Kumar",
+      seoDescription: "Administrative claim-tracking SaaS platform built and styled by Ritesh Kumar."
+    },
+    {
+      id: "proj-9",
+      title: "TrendCatch Business",
+      slug: "trendcatch-business",
+      category: "Client Website",
+      techStack: ["Business Website", "Performance", "UI/UX"],
+      description: "Business website with ongoing maintenance — layout improvements, responsiveness, UI updates, bug fixes, and content/page optimization.",
+      features: [
+        "Ongoing full stack support and codebase optimization updates",
+        "Integrated custom conversion channels and call-to-actions",
+        "Responsive alignment and styling bug fixes"
+      ],
+      clientName: "TrendCatch Biz",
+      projectUrl: "https://trendcatch.biz/",
+      githubUrl: "",
+      thumbnail: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
+      gallery: [
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800"
+      ],
+      featured: false,
+      status: true,
+      seoTitle: "TrendCatch Business Web Maintenance - Ritesh Kumar",
+      seoDescription: "Modern professional corporate web page maintained and developed by Ritesh Kumar."
+    }
+  ],
+  experience: [
+    {
+      id: "exp-1",
+      companyName: "Vivan Web Solution Pvt. Ltd.",
+      role: "Freelance Full-Stack Web Developer",
+      startDate: "November 2025",
+      endDate: "Present",
+      location: "Ahmedabad, Gujarat, India (Remote)",
+      description: "Building scalable custom websites, SaaS interfaces, and business workflow automations for client bases across US, UK, and European regions. Directing full lifecycle scopes spanning database setups, secure client portals, e-commerce integrations, and high-performance frontend designs.",
+      techStack: ["React.js", "Next.js", "PHP Laravel/Symfony", "Node.js", "ASP.NET Core"],
+      displayOrder: 1
+    },
+    {
+      id: "exp-2",
+      companyName: "Self Employed",
+      role: "Freelance Python Web Scraping Developer",
+      startDate: "April 2024",
+      endDate: "Present",
+      location: "Remote Worldwide",
+      description: "Architecting high-volume extraction tools parsing complex JavaScript-rendered online websites. Delivering automated leads pipelines and pricing tracking monitors with 99%+ record integrity.",
+      techStack: ["Python", "Scrapy", "Selenium", "BeautifulSoup", "Proxy Rotation"],
+      displayOrder: 2
+    },
+    {
+      id: "exp-3",
+      companyName: "Full-Stack Software Developer (ASP.NET)",
+      role: "Full-Stack Developer",
+      startDate: "November 2024",
+      endDate: "November 2025",
+      location: "Ahmedabad, India",
+      description: "Delivered scalable enterprise web interfaces using ASP.NET Core and SQL Server databases. Formulated performant web APis transferring secure client parameters across systems.",
+      techStack: ["ASP.NET Core", "C#", "SQL Server", "jQuery", "Bootstrap"],
+      displayOrder: 3
+    },
+    {
+      id: "exp-4",
+      companyName: "WebKnight Infosystem",
+      role: "PHP Developer Intern",
+      startDate: "June 2023",
+      endDate: "November 2023",
+      location: "Ahmedabad, India",
+      description: "Collaborated in crafting PHP-based client platforms using Laravel. Programmed custom AJAX layout scripts to improve interactions.",
+      techStack: ["PHP", "Laravel", "MySQL", "React.js", "jQuery", "AJAX"],
+      displayOrder: 4
+    }
+  ],
+  education: [
+    {
+      id: "edu-1",
+      institute: "IES Group of Institutes, Bhopal",
+      degree: "Bachelor of Technology (B.Tech), Computer Software Engineering",
+      year: "2019 - 2023",
+      description: "Graduated with rich software engineering foundations, data structures, MVC modeling, and relational database management methodologies."
+    },
+    {
+      id: "edu-2",
+      institute: "R. JHA College, Sitamarhi",
+      degree: "Intermediate Annual Examination, I.Sc (Science)",
+      year: "2017 - 2019",
+      description: "Focused in mathematics, physics, and computer science foundations with deep analytical training."
+    }
+  ],
+  certifications: [
+    {
+      id: "cert-1",
+      name: "Nasscom Java Excellence Certificate",
+      issuer: "Nasscom Academic Alliance",
+      year: "2023",
+      url: "#",
+      status: true
+    },
+    {
+      id: "cert-2",
+      name: "AWS Academy Machine Learning Foundations",
+      issuer: "AWS Academy Graduate Program",
+      year: "2023",
+      url: "#",
+      status: true
+    },
+    {
+      id: "cert-3",
+      name: "Nasscom Python Excellence Certificate",
+      issuer: "Nasscom Academic Alliance",
+      year: "2023",
+      url: "#",
+      status: true
+    }
+  ],
+  testimonials: [
+    {
+      id: "tst-1",
+      clientName: "David Harrison",
+      company: "InnoMedia Agency Ltd (UK)",
+      rating: 5,
+      message: "Ritesh delivered our bespoke CRM system on time, with flawless dynamic interfaces. He has incredible technical clarity and his team scaled development perfectly. Highly recommended!",
+      photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
+      status: true
+    },
+    {
+      id: "tst-2",
+      clientName: "Clara Vance",
+      company: "Apex Retailers (US)",
+      rating: 5,
+      message: "Our catalog is dynamically scraped and tracked across thousands of lines of SKUs continuously. Ritesh's Python web scraping pipelines reduced manual updates by 30+ hours/week!",
+      photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200",
+      status: true
+    }
+  ],
+  blogs: [
+    {
+      id: "bl-1",
+      title: "Why Symfony is Still My Top Choice for Complex Enterprise SaaS backends",
+      slug: "why-symfony-top-choice-enterprise-saas",
+      category: "PHP & Symfony",
+      content: "PHP has undergone a massive renaissance, and Symfony is at the forefront of this evolution. When constructing critical software pipelines, its dependency injection container, micro-kernel architecture, and powerful Doctrine ORM are exceptional assets. In this article, I discuss how Symfony's strict coding standards prevent bugs and outline custom commands routines that accelerate deployments.",
+      featuredImage: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&q=80&w=800",
+      tags: ["Symfony", "PHP", "SaaS Backend", "Architecture"],
+      status: "published",
+      createdAt: "2026-05-18",
+      seoTitle: "Why PHP Symfony commands Enterprise Power - Ritesh Kumar Blog",
+      seoDescription: "An in-depth guide regarding PHP Symfony's enterprise strengths including state management, testing, and Doctrine ORM structures."
+    },
+    {
+      id: "bl-2",
+      title: "Mastering Headless Scrapers: Mitigating CAPTCHAs and Bot Detection",
+      slug: "mastering-headless-scrapers-mitigating-captchas",
+      category: "Web Scraping",
+      content: "Modern websites are highly guarded by Cloudflare, Akamai, and behavioral analysis engines. Writing robust data miners is more artwork than simple parsing. This guide details practical proxy rotation loops, user agent spoofing logs, rendering Javascript securely with Selenium headless browser contexts, and structuring parallel Scrapy pipelines.",
+      featuredImage: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=800",
+      tags: ["Python", "Scrapy", "Selenium", "Web Scraping"],
+      status: "published",
+      createdAt: "2026-06-01",
+      seoTitle: "Bypassing Bot Detectors in High-Volume Web Scraping - Ritesh Kumar",
+      seoDescription: "Learn to build resilient headless crawling engines with automated proxy cycling and stealth configurations."
+    }
+  ],
+  contacts: [
+    {
+      id: "con-1",
+      name: "Sanjay Shah",
+      email: "sanjay@testcorp.com",
+      phone: "+91 98250 11111",
+      subject: "Inquiry for Custom E-commerce App",
+      message: "Hello Ritesh, I saw your full-stack portfolio. We need an on-demand custom shop integrated with local payment options. Let me know when is a good time to connect on WhatsApp.",
+      date: "2026-06-12T14:32:00.000Z",
+      read: false,
+      replied: false
+    }
+  ],
+  visitors: [
+    // Pre-seeded standard visitor charts
+    { id: "v-1", ip: "192.168.1.100", userAgent: "Chrome / Windows", browser: "Chrome", deviceType: "desktop", os: "Windows", referrer: "https://google.com", pageUrl: "/", visitTime: "2026-06-12T10:00:00.000Z" },
+    { id: "v-2", ip: "103.54.21.99", userAgent: "Safari / iPhone", browser: "Safari", deviceType: "mobile", os: "iOS", referrer: "https://linkedin.com", pageUrl: "/portfolio", visitTime: "2026-06-12T11:15:00.000Z" },
+    { id: "v-3", ip: "44.20.198.2", userAgent: "Firefox / Linux", browser: "Firefox", deviceType: "desktop", os: "Linux", referrer: "Direct", pageUrl: "/blog", visitTime: "2026-06-13T01:30:00.000Z" }
+  ],
+  seo: {
+    metaTitle: "Ritesh Kumar | Freelance Full-Stack Developer & Web Scraping Expert",
+    metaDescription: "Professional Full-Stack Developer with 4+ years of experience in React, Next.js, Node.js, PHP Laravel/Symfony, Web Scraping, and custom web applications.",
+    keywords: "Freelance developer, Symfony, Laravel, React Developer, Full Stack Freelancer, Web Scraping, Python Scrapy, Ahmedabad, Ritesh Kumar",
+    ogImage: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=600",
+    googleAnalytics: "<!-- Google Analytics Script -->",
+    customHeaderScripts: "",
+    customFooterScripts: ""
+  },
+  site: {
+    logoText: "Ritesh",
+    logoSubtext: "Kumar",
+    websiteName: "Ritesh Kumar Portfolio",
+    footerText: "© 2026 Ritesh Kumar. All rights reserved. Delighting clients globally from Gujarat, India.",
+    socialLinkedIn: "https://www.linkedin.com/in/ritesh-kumar-freelancer",
+    socialGitHub: "https://github.com/ritesh-kumar",
+    socialWhatsApp: "https://wa.me/917463867570",
+    socialEmail: "ritesh2001stm@gmail.com",
+    maintenanceMode: false,
+    themeColor: "indigo"
+  }
+};
+
+// Main class to fetch / update
+export class DbStore {
+  static getDB(): Database {
+    ensureDataDir();
+    if (!fs.existsSync(DB_FILE)) {
+      fs.writeFileSync(DB_FILE, JSON.stringify(defaultDb, null, 2), "utf-8");
+      return defaultDb;
+    }
+    try {
+      const content = fs.readFileSync(DB_FILE, "utf-8");
+      return JSON.parse(content) as Database;
+    } catch (e) {
+      console.error("Failed to parse database.json, rebuilding default Db", e);
+      return defaultDb;
+    }
+  }
+
+  static saveDB(data: Database): void {
+    ensureDataDir();
+    fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2), "utf-8");
+  }
+}
