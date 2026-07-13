@@ -368,7 +368,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                   onError={(e) => {
                     e.currentTarget.src = "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=600";
                   }}
-                  className="w-full h-full object-cover opacity-95 hover:opacity-100 transition-all duration-500"
+                  className="w-full h-full object-cover object-top opacity-95 hover:opacity-100 transition-all duration-500"
                 />
                 
                 {/* Floating indicator badge */}
@@ -1314,7 +1314,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                       onError={(e) => {
                         e.currentTarget.src = "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=600";
                       }}
-                      className="w-full h-full object-cover" 
+                      className="w-full h-full object-cover object-top" 
                     />
                   </div>
                   <div>
