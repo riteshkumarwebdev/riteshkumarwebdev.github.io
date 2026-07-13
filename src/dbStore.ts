@@ -205,7 +205,7 @@ const defaultDb: Database = {
     linkedin: "https://www.linkedin.com/in/ritesh-kumar-freelancer",
     portfolioUrl: "https://vivanwebsolution.com/portfolio/",
     location: "Ahmedabad, Gujarat, India (Available Worldwide)",
-    profileImage: "",
+    profileImage: "/assets/ritesh_profile.jpg",
     resumeUrl: ""
   },
   hero: {
