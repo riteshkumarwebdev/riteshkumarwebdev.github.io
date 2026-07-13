@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { AnimatePresence, motion, useReducedMotion, useScroll, useSpring } from "motion/react";
 import { 
   Code, Server, Database, Workflow, Cpu, Layers, ShoppingBag, RefreshCw, 
   Play, GitCommit, GitPullRequest, Cloud, Send, Github, Linkedin, ExternalLink, 
@@ -17,11 +18,87 @@ interface PortfolioViewProps {
   siteName: string;
 }
 
+const easeOutExpo = [0.22, 1, 0.36, 1] as const;
+
+function AnimatedCounter({
+  value,
+  suffix = "",
+  label,
+  className,
+}: {
+  value: number;
+  suffix?: string;
+  label: string;
+  className: string;
+}) {
+  const [displayValue, setDisplayValue] = useState(0);
+  const prefersReducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      setDisplayValue(value);
+      return;
+    }
+
+    let frame = 0;
+    let start: number | null = null;
+    const duration = 1100;
+
+    const tick = (time: number) => {
+      if (start === null) start = time;
+      const progress = Math.min((time - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setDisplayValue(Math.round(value * eased));
+
+      if (progress < 1) {
+        frame = requestAnimationFrame(tick);
+      }
+    };
+
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [prefersReducedMotion, value]);
+
+  return (
+    <div>
+      <p className={className}>{displayValue}{suffix}</p>
+      <p className="text-xs text-slate-400 uppercase tracking-wider font-mono">{label}</p>
+    </div>
+  );
+}
+
 export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewProps) {
   const [db, setDb] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [filterCategory, setFilterCategory] = useState("All");
   const [showAllProjects, setShowAllProjects] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 28,
+    restDelta: 0.001,
+  });
+
+  const revealInitial = prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 24 };
+  const revealAnimate = prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 };
+  const containerVariants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: prefersReducedMotion ? 0 : 0.09,
+        delayChildren: prefersReducedMotion ? 0 : 0.04,
+      },
+    },
+  };
+  const itemVariants = {
+    hidden: revealInitial,
+    show: {
+      ...revealAnimate,
+      transition: { duration: prefersReducedMotion ? 0.01 : 0.55, ease: easeOutExpo },
+    },
+  };
   
   // Custom Theme state (persisted to localStorage, respects system setting)
   const [isDark, setIsDark] = useState<boolean>(() => {
@@ -45,6 +122,13 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
       document.documentElement.classList.remove("dark");
     }
   }, [isDark]);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 80);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Custom Detail Modal states
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -221,6 +305,10 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
 
   return (
     <div className={`relative min-h-screen ${t.bgMain} font-sans selection:bg-indigo-500 selection:text-white overflow-x-hidden transition-colors duration-300`}>
+      <motion.div
+        className="fixed left-0 top-0 z-[70] h-1 w-full origin-left bg-gradient-to-r from-indigo-500 via-blue-500 to-emerald-400"
+        style={{ scaleX }}
+      />
       
       {/* GLOWING ORBS BACKDROP */}
       <div className={`absolute top-0 left-1/4 w-96 h-96 ${isDark ? "bg-indigo-600/10" : "bg-indigo-500/5"} rounded-full blur-3xl pointer-events-none transition-opacity duration-300`}></div>
@@ -243,7 +331,12 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
       </a>
 
       {/* HEADER NAVIGATION */}
-      <header className={`sticky top-0 z-40 backdrop-blur-md ${isDark ? "bg-slate-950/80 border-slate-900" : "bg-white/85 border-slate-200"} border-b transition-colors duration-300`}>
+      <motion.header
+        initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: prefersReducedMotion ? 0.01 : 0.4, ease: "easeOut" }}
+        className={`sticky top-0 z-40 backdrop-blur-md ${isDark ? (isScrolled ? "bg-slate-950/95 border-slate-800 shadow-lg shadow-black/20" : "bg-slate-950/80 border-slate-900") : (isScrolled ? "bg-white/95 border-slate-300 shadow-md shadow-slate-900/5" : "bg-white/85 border-slate-200")} border-b transition-colors duration-300`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <a href="#home" className="flex items-center gap-2 group">
             <div className="w-10 h-10 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-lg tracking-wider text-white shadow-md shadow-indigo-500/20 group-hover:bg-indigo-500 transition-colors">
@@ -290,71 +383,99 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
               {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
 
-            <a 
+            <motion.a 
               href="#contact" 
+              whileHover={prefersReducedMotion ? undefined : { y: -2, scale: 1.03 }}
+              whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
               className="hidden lg:inline-flex px-4 py-2 text-xs font-bold font-mono tracking-wide uppercase rounded-lg bg-indigo-600 hover:bg-indigo-500 hover:shadow-lg hover:shadow-indigo-500/20 transition-all text-white"
             >
               Hire Me
-            </a>
+            </motion.a>
           </div>
         </div>
-      </header>
+      </motion.header>
 
       {/* 1. HERO SECTION */}
       <section id="home" className="relative pt-10 pb-12 md:pt-14 md:pb-16 lg:pt-16 lg:pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <motion.div
+          className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.35 }}
+        >
           
-          <div className="lg:col-span-7 space-y-5">
-            <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full ${isDark ? "bg-indigo-500/10 border-indigo-500/30 text-indigo-400" : "bg-indigo-50 border-indigo-200 text-indigo-600"} border text-xs font-mono`}>
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <motion.div className="lg:col-span-7 space-y-5" variants={containerVariants}>
+            <motion.div variants={itemVariants} className={`inline-flex items-center gap-2 px-3 py-1 rounded-full ${isDark ? "bg-indigo-500/10 border-indigo-500/30 text-indigo-400" : "bg-indigo-50 border-indigo-200 text-indigo-600"} border text-xs font-mono`}>
+              <motion.span
+                className="w-2 h-2 rounded-full bg-emerald-500"
+                animate={prefersReducedMotion ? undefined : { scale: [1, 1.35, 1], opacity: [1, 0.55, 1] }}
+                transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+              />
               Available for New Freelance Contracts
-            </div>
+            </motion.div>
             
-            <h1 className={`text-4xl sm:text-5xl md:text-6xl font-extrabold ${t.textBright} leading-[1.08]`}>
-              {hero.heading || "Crafting High-Volume Web Automations & SaaS backends"}
-            </h1>
+            <motion.h1 className={`text-4xl sm:text-5xl md:text-6xl font-extrabold ${t.textBright} leading-[1.08]`}>
+              {(hero.heading || "Crafting High-Volume Web Automations & SaaS backends").split(" ").map((word: string, index: number) => (
+                <motion.span
+                  key={`${word}-${index}`}
+                  className="inline-block mr-[0.25em]"
+                  initial={revealInitial}
+                  whileInView={revealAnimate}
+                  viewport={{ once: true }}
+                  transition={{ duration: prefersReducedMotion ? 0.01 : 0.5, delay: prefersReducedMotion ? 0 : index * 0.045, ease: easeOutExpo }}
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </motion.h1>
             
-            <p className={`text-lg ${t.textMuted} max-w-xl`}>
+            <motion.p variants={itemVariants} className={`text-lg ${t.textMuted} max-w-xl`}>
               {hero.subheading || "Full-Stack developer with 4+ years of expertise. I turn ideas into reliable high-performing web platforms, scrapers, and dynamic frontends."}
-            </p>
+            </motion.p>
 
-            <div className="flex flex-wrap items-center gap-4 pt-2">
-              <a 
+            <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-4 pt-2">
+              <motion.a 
                 href={hero.ctaLinkPrimary || "https://wa.me/917463867570"} 
                 target="_blank" 
                 rel="noopener noreferrer"
+                whileHover={prefersReducedMotion ? undefined : { y: -3, scale: 1.02 }}
+                whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
                 className="px-6 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm transition-all hover:-translate-y-0.5 shadow-lg shadow-indigo-500/20 flex items-center gap-2"
                 id="hero-cta-primary"
               >
                 {hero.ctaTextPrimary || "Hire Me On WhatsApp"} <ArrowUpRight className="w-4 h-4" />
-              </a>
-              <a 
+              </motion.a>
+              <motion.a 
                 href={hero.ctaLinkSecondary || "#portfolio"} 
+                whileHover={prefersReducedMotion ? undefined : { y: -3, scale: 1.02 }}
+                whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
                 className={`px-6 py-3.5 rounded-xl ${isDark ? "bg-slate-900 hover:bg-slate-800 border-slate-800 text-slate-300 hover:text-white" : "bg-white hover:bg-slate-100 border-slate-200 text-slate-800"} border font-medium text-sm transition-all`}
                 id="hero-cta-secondary"
               >
                 {hero.ctaTextSecondary || "View Work Portfolio"}
-              </a>
-            </div>
+              </motion.a>
+            </motion.div>
 
-            <div className={`grid grid-cols-3 gap-6 pt-5 border-t ${isDark ? "border-slate-900" : "border-slate-200"} max-w-lg`}>
-              <div>
-                <p className={`text-2xl md:text-3xl font-extrabold ${t.textBright}`}>4+ Years</p>
-                <p className={`text-xs ${t.textMuted} uppercase tracking-wider font-mono`}>Real Results</p>
-              </div>
-              <div>
-                <p className={`text-2xl md:text-3xl font-extrabold ${t.textBright}`}>100k+</p>
-                <p className={`text-xs ${t.textMuted} uppercase tracking-wider font-mono`}>We scraped</p>
-              </div>
-              <div>
-                <p className={`text-2xl md:text-3xl font-extrabold ${t.textBright}`}>10+</p>
-                <p className={`text-xs ${t.textMuted} uppercase tracking-wider font-mono`}>Dev Team Leads</p>
-              </div>
-            </div>
-          </div>
+            <motion.div variants={containerVariants} className={`grid grid-cols-3 gap-6 pt-5 border-t ${isDark ? "border-slate-900" : "border-slate-200"} max-w-lg`}>
+              <motion.div variants={itemVariants}>
+                <AnimatedCounter value={4} suffix="+ Years" label="Real Results" className={`text-2xl md:text-3xl font-extrabold ${t.textBright}`} />
+              </motion.div>
+              <motion.div variants={itemVariants}>
+                <AnimatedCounter value={100} suffix="k+" label="We scraped" className={`text-2xl md:text-3xl font-extrabold ${t.textBright}`} />
+              </motion.div>
+              <motion.div variants={itemVariants}>
+                <AnimatedCounter value={10} suffix="+" label="Dev Team Leads" className={`text-2xl md:text-3xl font-extrabold ${t.textBright}`} />
+              </motion.div>
+            </motion.div>
+          </motion.div>
 
-          <div className="lg:col-span-5 relative flex justify-center">
-            <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96">
+          <motion.div className="lg:col-span-5 relative flex justify-center" variants={itemVariants}>
+            <motion.div
+              className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96"
+              animate={prefersReducedMotion ? undefined : { y: [0, -6, 0] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+            >
               {/* Outer decorative ring */}
               <div className="absolute inset-0 rounded-full border-2 border-indigo-500/20 animate-spin" style={{ animationDuration: '20s' }}></div>
               <div className="absolute -inset-4 rounded-full border border-blue-500/10 animate-reverse-spin" style={{ animationDuration: '30s' }}></div>
@@ -380,18 +501,25 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-        </div>
+        </motion.div>
       </section>
 
       {/* 2. ABOUT & STATS SECTION */}
-      <section id="about" className={`py-20 ${t.bgSectionAlt} px-4 sm:px-6 lg:px-8`}>
+      <motion.section
+        id="about"
+        className={`py-20 ${t.bgSectionAlt} px-4 sm:px-6 lg:px-8`}
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             
-            <div className="lg:col-span-5">
+            <motion.div className="lg:col-span-5" variants={itemVariants}>
               <p className={`font-mono ${t.textIndigo} text-xs tracking-widest uppercase mb-2`}>ABOUT THE ARCHITECT</p>
               <h2 className={`text-3xl font-bold ${t.textBright} mb-6`}>Expert in High-Performance Custom Applications</h2>
               
@@ -416,46 +544,46 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="lg:col-span-7 flex flex-col justify-between">
+            <motion.div className="lg:col-span-7 flex flex-col justify-between" variants={containerVariants}>
               <div>
                 <p className={`font-mono ${t.textIndigo} text-xs tracking-widest uppercase mb-2`}>MY CAPABILITIES</p>
                 <h2 className={`text-3xl font-bold ${t.textBright} mb-6`}>Why Client Agencies Partner with Me</h2>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className={`p-5 rounded-xl ${isDark ? "bg-slate-950/50 border-slate-900 hover:border-slate-800" : "bg-white border-slate-200 hover:border-slate-300 shadow-sm"} transition-all space-y-2`}>
+                <motion.div variants={itemVariants} whileHover={prefersReducedMotion ? undefined : { y: -4, scale: 1.01 }} className={`p-5 rounded-xl ${isDark ? "bg-slate-950/50 border-slate-900 hover:border-indigo-500/30" : "bg-white border-slate-200 hover:border-indigo-300 shadow-sm"} transition-all space-y-2`}>
                   <div className="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400">
                     <CheckCircle className="w-4 h-4" />
                   </div>
                   <h4 className={`text-sm font-bold ${t.textBright} font-mono`}>Rapid Project Deliveries</h4>
                   <p className={`text-xs ${t.textMuted}`}>Strict on-time guarantees and structured progression milestones.</p>
-                </div>
+                </motion.div>
 
-                <div className={`p-5 rounded-xl ${isDark ? "bg-slate-950/50 border-slate-900 hover:border-slate-800" : "bg-white border-slate-200 hover:border-slate-300 shadow-sm"} transition-all space-y-2`}>
+                <motion.div variants={itemVariants} whileHover={prefersReducedMotion ? undefined : { y: -4, scale: 1.01 }} className={`p-5 rounded-xl ${isDark ? "bg-slate-950/50 border-slate-900 hover:border-indigo-500/30" : "bg-white border-slate-200 hover:border-indigo-300 shadow-sm"} transition-all space-y-2`}>
                   <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400">
                     <Code className="w-4 h-4" />
                   </div>
                   <h4 className={`text-sm font-bold ${t.textBright} font-mono`}>Absolute Architectural Integrity</h4>
                   <p className={`text-xs ${t.textMuted}`}>Clean MVC design patterns utilizing robust validation algorithms.</p>
-                </div>
+                </motion.div>
 
-                <div className={`p-5 rounded-xl ${isDark ? "bg-slate-950/50 border-slate-900 hover:border-slate-800" : "bg-white border-slate-200 hover:border-slate-300 shadow-sm"} transition-all space-y-2`}>
+                <motion.div variants={itemVariants} whileHover={prefersReducedMotion ? undefined : { y: -4, scale: 1.01 }} className={`p-5 rounded-xl ${isDark ? "bg-slate-950/50 border-slate-900 hover:border-indigo-500/30" : "bg-white border-slate-200 hover:border-indigo-300 shadow-sm"} transition-all space-y-2`}>
                   <div className="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400">
                     <Workflow className="w-4 h-4" />
                   </div>
                   <h4 className={`text-sm font-bold ${t.textBright} font-mono`}>Flexible Scaling Capabilities</h4>
                   <p className={`text-xs ${t.textMuted}`}>Can work on isolated tasks or command our pool of 10+ devs.</p>
-                </div>
+                </motion.div>
 
-                <div className={`p-5 rounded-xl ${isDark ? "bg-slate-950/50 border-slate-900 hover:border-slate-800" : "bg-white border-slate-200 hover:border-slate-300 shadow-sm"} transition-all space-y-2`}>
+                <motion.div variants={itemVariants} whileHover={prefersReducedMotion ? undefined : { y: -4, scale: 1.01 }} className={`p-5 rounded-xl ${isDark ? "bg-slate-950/50 border-slate-900 hover:border-indigo-500/30" : "bg-white border-slate-200 hover:border-indigo-300 shadow-sm"} transition-all space-y-2`}>
                   <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400">
                     <Cpu className="w-4 h-4" />
                   </div>
                   <h4 className={`text-sm font-bold ${t.textBright} font-mono`}>Worldwide Timezone Syncs</h4>
                   <p className={`text-xs ${t.textMuted}`}>Full collaboration availability for USA, UK, & Europe partners.</p>
-                </div>
+                </motion.div>
               </div>
 
               {/* RESUME DOWNLOAD SECTION */}
@@ -478,29 +606,33 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                 </a>
               </div>
 
-            </div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 3. SERVICES SECTION */}
-      <section id="services" className="py-20 px-4 sm:px-6 lg:px-8">
+      <motion.section id="services" className="py-20 px-4 sm:px-6 lg:px-8" variants={containerVariants} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
         <div className="max-w-7xl mx-auto space-y-12">
-          <div className="text-center space-y-3">
+          <motion.div className="text-center space-y-3" variants={itemVariants}>
             <p className={`font-mono ${t.textIndigo} text-xs tracking-widest uppercase`}>WHAT WE DO BEST</p>
             <h2 className={`text-3xl sm:text-4xl font-extrabold ${t.textBright}`}>Full-Stack Custom Services</h2>
             <div className="w-12 h-1 bg-indigo-500 mx-auto rounded-full"></div>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" variants={containerVariants}>
             {services.map((srv: Service, idx: number) => (
-              <div 
+              <motion.div 
                 key={srv.id} 
+                variants={itemVariants}
+                whileHover={prefersReducedMotion ? undefined : { y: -6, scale: 1.01 }}
                 className={`p-6 rounded-2xl ${t.bgCard} border ${t.borderCard} ${t.bgCardHover} transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between group`}
               >
                 <div className="space-y-4">
                   <div className="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
-                    <RenderIcon name={srv.icon} />
+                    <motion.div whileHover={prefersReducedMotion ? undefined : { scale: [1, 1.12, 1] }} transition={{ duration: 0.35 }}>
+                      <RenderIcon name={srv.icon} />
+                    </motion.div>
                   </div>
                   <div>
                     <p className={`font-mono text-xs ${t.textMuted} mb-1`}>Service {idx + 1}</p>
@@ -514,25 +646,25 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                     Discuss Inquiry <ChevronRight className="w-3 h-3" />
                   </a>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 4. SKILLS SECTION */}
-      <section id="skills" className={`py-20 ${t.bgSectionAlt} px-4 sm:px-6 lg:px-8`}>
+      <motion.section id="skills" className={`py-20 ${t.bgSectionAlt} px-4 sm:px-6 lg:px-8`} variants={containerVariants} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
         <div className="max-w-7xl mx-auto space-y-12">
           
-          <div className="text-center space-y-3 col-span-12">
+          <motion.div className="text-center space-y-3 col-span-12" variants={itemVariants}>
             <p className={`font-mono ${t.textIndigo} text-xs tracking-widest uppercase`}>TECHNICAL MATRIX</p>
             <h2 className={`text-3xl font-extrabold ${t.textBright}`}>Skills & Development Stack</h2>
             <div className="w-12 h-1 bg-indigo-500 mx-auto rounded-full"></div>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             
-            <div className="lg:col-span-4 space-y-4">
+            <motion.div className="lg:col-span-4 space-y-4" variants={itemVariants}>
               <h3 className={`text-2xl font-bold ${t.textBright}`}>Production Stack Core Competences</h3>
               <p className={`text-xs ${t.textMuted} leading-relaxed`}>
                 Ritesh has refined a reliable modern ecosystem centered around fast state managers on the browser client, combined with robust structured database layers.
@@ -555,12 +687,12 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                   </li>
                 </ul>
               </div>
-            </div>
+            </motion.div>
 
             <div className="lg:col-span-8">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <motion.div className="grid grid-cols-1 sm:grid-cols-2 gap-4" variants={containerVariants}>
                 {skills.map((sk: Skill) => (
-                  <div key={sk.id} className={`p-4 rounded-xl ${t.bgCard} border ${t.borderCard} space-y-2`}>
+                  <motion.div key={sk.id} variants={itemVariants} className={`p-4 rounded-xl ${t.bgCard} border ${t.borderCard} space-y-2`}>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <span className="w-2 h-2 rounded-full bg-indigo-500"></span>
@@ -570,29 +702,32 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                     </div>
                     {/* Progress indicator */}
                     <div className={`w-full h-1.5 ${isDark ? "bg-slate-900" : "bg-slate-150"} rounded-full overflow-hidden`}>
-                      <div 
+                      <motion.div 
                         className="h-full bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full"
-                        style={{ width: `${sk.percentage}%` }}
-                      ></div>
+                        initial={{ width: prefersReducedMotion ? `${sk.percentage}%` : "0%" }}
+                        whileInView={{ width: `${sk.percentage}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: prefersReducedMotion ? 0.01 : 0.9, ease: easeOutExpo }}
+                      />
                     </div>
                     <span className={`inline-block text-[10px] font-mono ${isDark ? "text-slate-500 bg-slate-900" : "text-slate-600 bg-slate-100 border border-slate-200/60"} px-2 py-0.5 rounded uppercase`}>
                       {sk.category}
                     </span>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
 
           </div>
 
         </div>
-      </section>
+      </motion.section>
 
       {/* 5. PORTFOLIO/PROJECTS SECTION */}
-      <section id="portfolio" className="py-20 px-4 sm:px-6 lg:px-8">
+      <motion.section id="portfolio" className="py-20 px-4 sm:px-6 lg:px-8" variants={containerVariants} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.16 }}>
         <div className="max-w-7xl mx-auto space-y-12">
           
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <motion.div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6" variants={itemVariants}>
             <div className="space-y-3">
               <p className={`font-mono ${t.textIndigo} text-xs tracking-widest uppercase`}>PROVEN HISTORIES</p>
               <h2 className={`text-3xl font-extrabold ${t.textBright}`}>Interactive Work Showcase</h2>
@@ -608,25 +743,39 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                     setFilterCategory(cat);
                     trackVisit(`/portfolio/${cat.toLowerCase().replace(/ /g, "-")}`);
                   }}
-                  className={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all ${
+                  className={`relative px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all ${
                     filterCategory === cat 
-                      ? "bg-indigo-600 text-white font-bold" 
+                      ? "text-white font-bold" 
                       : isDark 
                         ? "bg-slate-900 hover:bg-slate-800 text-slate-400" 
                         : "bg-white hover:bg-slate-100 text-slate-600 border border-slate-200 shadow-xs"
                   }`}
                 >
-                  {cat}
+                  {filterCategory === cat && (
+                    <motion.span
+                      layoutId="active-project-filter"
+                      className="absolute inset-0 rounded-lg bg-indigo-600"
+                      transition={{ duration: prefersReducedMotion ? 0.01 : 0.25, ease: "easeOut" }}
+                    />
+                  )}
+                  <span className="relative z-10">{cat}</span>
                 </button>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* PROJECT GRID */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
+          <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid" variants={containerVariants}>
+            <AnimatePresence mode="popLayout">
             {projectsToDisplay.map((proj: Project) => (
-              <div 
+              <motion.div 
                 key={proj.id}
+                layout
+                variants={itemVariants}
+                initial="hidden"
+                animate="show"
+                exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
+                whileHover={prefersReducedMotion ? undefined : { y: -6 }}
                 className={`group rounded-2xl ${t.bgCard} border ${t.borderCard} overflow-hidden flex flex-col justify-between ${t.bgCardHover} transition-all duration-300 hover:-translate-y-1`}
               >
                 <div>
@@ -705,9 +854,10 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                   </div>
                 </div>
 
-              </div>
+              </motion.div>
             ))}
-          </div>
+            </AnimatePresence>
+          </motion.div>
 
           {/* SHOW MORE PAGINATION */}
           {filteredProjects.length > 6 && (
@@ -725,29 +875,29 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
           )}
 
         </div>
-      </section>
+      </motion.section>
 
       {/* 6. EXPERIENCES & RESUME TIME-LINE */}
-      <section id="experience" className={`py-20 ${t.bgSectionAlt} px-4 sm:px-6 lg:px-8`}>
+      <motion.section id="experience" className={`py-20 ${t.bgSectionAlt} px-4 sm:px-6 lg:px-8`} variants={containerVariants} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.15 }}>
         <div className="max-w-7xl mx-auto space-y-12">
           
-          <div className="text-center space-y-3">
+          <motion.div className="text-center space-y-3" variants={itemVariants}>
             <p className={`font-mono ${t.textIndigo} text-xs tracking-widest uppercase font-bold`}>CAREER LANDSCAPE</p>
             <h2 className={`text-3xl font-extrabold ${t.textBright}`}>Professional Experience & Background</h2>
             <div className="w-12 h-1 bg-indigo-500 mx-auto rounded-full"></div>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             
             {/* WORK COLUMN */}
-            <div className="space-y-6">
+            <motion.div className="space-y-6" variants={containerVariants}>
               <h3 className={`text-xl font-bold ${t.textBright} flex items-center gap-2`}>
                 <Briefcase className="w-5 h-5 text-indigo-400" /> Work History
               </h3>
               
               <div className={`space-y-6 border-l ${isDark ? "border-slate-800" : "border-slate-200"} pl-6 relative`}>
                 {experience.map((exp: Experience, idx: number) => (
-                  <div key={exp.id || idx} className="relative space-y-2">
+                  <motion.div key={exp.id || idx} className="relative space-y-2" variants={itemVariants}>
                     {/* Bullet marker */}
                     <div className={`absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full ${t.bulletBg} flex items-center justify-center`}>
                       <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
@@ -768,13 +918,13 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                         </span>
                       ))}
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
             {/* ACADEMICS & RECOGNITIONS */}
-            <div className="space-y-12">
+            <motion.div className="space-y-12" variants={containerVariants}>
               <div className="space-y-6">
                 <h3 className={`text-xl font-bold ${t.textBright} flex items-center gap-2`}>
                   <GraduationCap className="w-5 h-5 text-indigo-400" /> Education Background
@@ -782,12 +932,12 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                 
                 <div className="space-y-4">
                   {education.map((edu: Education, idx: number) => (
-                    <div key={edu.id || idx} className={`p-5 rounded-xl ${t.bgCardAlt} border ${t.borderCard} space-y-2`}>
+                    <motion.div key={edu.id || idx} variants={itemVariants} className={`p-5 rounded-xl ${t.bgCardAlt} border ${t.borderCard} space-y-2`}>
                       <span className={`font-mono text-[10px] ${t.textMuted}`}>{edu.year}</span>
                       <h4 className={`text-sm font-bold ${t.textBright}`}>{edu.degree}</h4>
                       <p className={`text-xs ${t.textIndigo} font-mono`}>{edu.institute}</p>
                       <p className={`text-xs ${t.textMuted} leading-normal`}>{edu.description}</p>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
@@ -800,7 +950,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {certifications.map((cert: Certification) => (
-                    <div key={cert.id} className={`p-4 rounded-xl ${isDark ? "bg-slate-950/40 border-slate-900 hover:border-slate-800" : "bg-white border-slate-200 hover:border-slate-300 shadow-xs"} transition-all flex items-start gap-3`}>
+                    <motion.div key={cert.id} variants={itemVariants} whileHover={prefersReducedMotion ? undefined : { y: -3 }} className={`p-4 rounded-xl ${isDark ? "bg-slate-950/40 border-slate-900 hover:border-slate-800" : "bg-white border-slate-200 hover:border-slate-300 shadow-xs"} transition-all flex items-start gap-3`}>
                       <div className="w-8 h-8 rounded-lg bg-indigo-500/15 flex items-center justify-center text-indigo-300 mt-0.5">
                         <Award className="w-4 h-4" />
                       </div>
@@ -809,31 +959,31 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                         <h4 className={`text-xs font-bold ${t.textBright} leading-snug`}>{cert.name}</h4>
                         <p className={`text-[10px] ${t.textMuted}`}>{cert.issuer}</p>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
 
-            </div>
+            </motion.div>
 
           </div>
 
         </div>
-      </section>
+      </motion.section>
 
       {/* 7. CLIENT BUZZ / TESTIMONIALS */}
-      <section id="testimonials" className="py-20 px-4 sm:px-6 lg:px-8">
+      <motion.section id="testimonials" className="py-20 px-4 sm:px-6 lg:px-8" variants={containerVariants} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
         <div className="max-w-7xl mx-auto space-y-12">
           
-          <div className="text-center space-y-3">
+          <motion.div className="text-center space-y-3" variants={itemVariants}>
             <p className={`font-mono ${t.textIndigo} text-xs tracking-widest uppercase font-bold`}>CLIENT HEARSAYS</p>
             <h2 className={`text-3xl font-extrabold ${t.textBright}`}>Feedback From Enterprise Partners</h2>
             <div className="w-12 h-1 bg-indigo-500 mx-auto rounded-full"></div>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-6" variants={containerVariants}>
             {testimonials.map((test: Testimonial) => (
-              <div key={test.id} className={`p-6 rounded-2xl ${t.bgCard} border ${t.borderCard} hover:border-indigo-500/20 transition-all relative flex flex-col justify-between`}>
+              <motion.div key={test.id} variants={itemVariants} whileHover={prefersReducedMotion ? undefined : { y: -5 }} className={`p-6 rounded-2xl ${t.bgCard} border ${t.borderCard} hover:border-indigo-500/20 transition-all relative flex flex-col justify-between`}>
                 
                 <div className="space-y-4">
                   <div className="flex gap-1">
@@ -857,27 +1007,29 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                   <MessageSquare className="w-6 h-6 text-indigo-500/10 ml-auto absolute bottom-6 right-6" />
                 </div>
 
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
         </div>
-      </section>
+      </motion.section>
 
       {/* 8. BLOG & KNOWLEDGES SECTION */}
-      <section id="blog" className={`py-20 ${t.bgSectionAlt} px-4 sm:px-6 lg:px-8`}>
+      <motion.section id="blog" className={`py-20 ${t.bgSectionAlt} px-4 sm:px-6 lg:px-8`} variants={containerVariants} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
         <div className="max-w-7xl mx-auto space-y-12">
           
-          <div className="text-center space-y-3">
+          <motion.div className="text-center space-y-3" variants={itemVariants}>
             <p className={`font-mono ${t.textIndigo} text-xs tracking-widest uppercase font-bold text-center`}>KNOWLEDGE SHARING</p>
             <h2 className={`text-3xl font-extrabold ${t.textBright} text-center`}>Ritesh's Architectural Blog</h2>
             <div className="w-12 h-1 bg-indigo-500 mx-auto rounded-full"></div>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-6" variants={containerVariants}>
             {blogs.map((post: Blog) => (
-              <div 
+              <motion.div 
                 key={post.id}
+                variants={itemVariants}
+                whileHover={prefersReducedMotion ? undefined : { y: -5 }}
                 className={`group p-5 rounded-2xl ${t.bgCard} border ${t.borderCard} hover:border-slate-800 transition-all flex flex-col justify-between`}
               >
                 <div className="space-y-4">
@@ -920,18 +1072,18 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                   </div>
                 </div>
 
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
         </div>
-      </section>
+      </motion.section>
 
       {/* 9. CONTACT & HIRE ME FORM */}
-      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 relative">
+      <motion.section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 relative" variants={containerVariants} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.18 }}>
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
           
-          <div className="lg:col-span-5 space-y-6">
+          <motion.div className="lg:col-span-5 space-y-6" variants={containerVariants}>
             <p className={`font-mono ${t.textIndigo} text-xs tracking-widest uppercase font-bold`}>READY TO COMMENCE?</p>
             <h2 className={`text-4xl font-extrabold ${t.textBright}`}>Let's Discuss Your Solutions Blueprint</h2>
             <p className={`text-xs ${t.textMuted} leading-relaxed`}>
@@ -976,13 +1128,13 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                 To guarantee maximum execution precision, I schedule face-time Zoom diagnostic calls for scope requests over $2.5k.
               </p>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="lg:col-span-7">
+          <motion.div className="lg:col-span-7" variants={itemVariants}>
             <div className={`p-6 sm:p-8 rounded-3xl ${t.bgCard} border ${t.borderCard} shadow-xl space-y-6`}>
               <h3 className={`text-xl font-bold ${t.textBright} font-mono`}>Submit Structural Inquiry Form</h3>
               
-              <form onSubmit={handleContactSubmit} className="space-y-4" id="consultation-form">
+              <motion.form onSubmit={handleContactSubmit} className="space-y-4" id="consultation-form" variants={containerVariants}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label className={`block text-xs font-mono ${t.textMuted} uppercase`}>Your Name *</label>
@@ -1053,9 +1205,10 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                   </div>
                 )}
 
-                <button 
+                <motion.button 
                   type="submit" 
                   disabled={submittingContact}
+                  whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
                   className="w-full py-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-mono font-bold tracking-wider text-xs uppercase transition-all flex items-center justify-center gap-2"
                   id="submit-contact-btn"
                 >
@@ -1069,13 +1222,13 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                       Transmit Inquiry <Send className="w-3.5 h-3.5" />
                     </>
                   )}
-                </button>
-              </form>
+                </motion.button>
+              </motion.form>
             </div>
-          </div>
+          </motion.div>
 
         </div>
-      </section>
+      </motion.section>
 
       {/* FOOTER */}
       <footer className={`${isDark ? "bg-slate-950 border-slate-900" : "bg-slate-100 border-slate-200"} border-t py-16 px-4 sm:px-6 lg:px-8`}>
