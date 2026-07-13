@@ -301,16 +301,16 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
       </header>
 
       {/* 1. HERO SECTION */}
-      <section id="home" className="relative pt-24 pb-20 md:pt-36 md:pb-32 px-4 sm:px-6 lg:px-8">
+      <section id="home" className="relative pt-10 pb-12 md:pt-14 md:pb-16 lg:pt-16 lg:pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 space-y-5">
             <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full ${isDark ? "bg-indigo-500/10 border-indigo-500/30 text-indigo-400" : "bg-indigo-50 border-indigo-200 text-indigo-600"} border text-xs font-mono`}>
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
               Available for New Freelance Contracts
             </div>
             
-            <h1 className={`text-4xl sm:text-5xl md:text-6xl font-extrabold ${t.textBright} leading-tight`}>
+            <h1 className={`text-4xl sm:text-5xl md:text-6xl font-extrabold ${t.textBright} leading-[1.08]`}>
               {hero.heading || "Crafting High-Volume Web Automations & SaaS backends"}
             </h1>
             
@@ -318,7 +318,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
               {hero.subheading || "Full-Stack developer with 4+ years of expertise. I turn ideas into reliable high-performing web platforms, scrapers, and dynamic frontends."}
             </p>
 
-            <div className="flex flex-wrap items-center gap-4 pt-4">
+            <div className="flex flex-wrap items-center gap-4 pt-2">
               <a 
                 href={hero.ctaLinkPrimary || "https://wa.me/917463867570"} 
                 target="_blank" 
@@ -337,7 +337,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
               </a>
             </div>
 
-            <div className={`grid grid-cols-3 gap-6 pt-8 border-t ${isDark ? "border-slate-900" : "border-slate-200"} max-w-lg`}>
+            <div className={`grid grid-cols-3 gap-6 pt-5 border-t ${isDark ? "border-slate-900" : "border-slate-200"} max-w-lg`}>
               <div>
                 <p className={`text-2xl md:text-3xl font-extrabold ${t.textBright}`}>4+ Years</p>
                 <p className={`text-xs ${t.textMuted} uppercase tracking-wider font-mono`}>Real Results</p>
