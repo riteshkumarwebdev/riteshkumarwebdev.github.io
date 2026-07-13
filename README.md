@@ -21,4 +21,4 @@ View your app in AI Studio: https://ai.studio/apps/d5b12356-5880-4c9d-a3b8-f40ea
 
 ## Deploy to GitHub Pages
 
-Run `npm run deploy` to publish the static Vite build to the `gh-pages` branch. The live URL will be `https://riteshkumarwebdev.github.io/riteshkumardev.github.io/`.
+Run `npm run deploy` to publish the static Vite build to the `gh-pages` branch. The live URL will be `https://riteshkumarwebdev.github.io/`.
