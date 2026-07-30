@@ -10,7 +10,7 @@
     "portfolioUrl": "https://vivanwebsolution.com/portfolio/",
     "location": "Ahmedabad, Gujarat, India (Available Worldwide)",
     "profileImage": "/assets/ritesh_profile.jpg",
-    "resumeUrl": ""
+    "resumeUrl": "/assets/Ritesh_Kumar_Resume.pdf"
   },
   "hero": {
     "heading": "Building Powerful, Scalable Custom Web Solutions",
@@ -70,20 +70,36 @@
       "icon": "Workflow",
       "displayOrder": 6,
       "status": true
+    },
+    {
+      "id": "srv-7",
+      "title": "Custom CRM & ERP System Development",
+      "description": "Bespoke customer relationship management engines, automated lead pipelines, billing portals, role-based access control, and real-time business intelligence dashboards.",
+      "icon": "Briefcase",
+      "displayOrder": 7,
+      "status": true
+    },
+    {
+      "id": "srv-8",
+      "title": "AI & LLM Integration Solutions",
+      "description": "Integrating Gemini and OpenAI APIs, custom AI agents, automated document extraction, vector search, and intelligent chat assistants into web applications.",
+      "icon": "Sparkles",
+      "displayOrder": 8,
+      "status": true
     }
   ],
   "skills": [
     {
       "id": "sk-1",
-      "name": "React.js / Next.js",
+      "name": "React.js & Next.js (App Router)",
       "category": "Frontend",
       "percentage": 95,
-      "icon": "React",
+      "icon": "Code",
       "status": true
     },
     {
       "id": "sk-2",
-      "name": "TypeScript / JavaScript",
+      "name": "TypeScript & Modern ES6+",
       "category": "Frontend",
       "percentage": 95,
       "icon": "Code",
@@ -91,6 +107,22 @@
     },
     {
       "id": "sk-3",
+      "name": "Tailwind CSS & Framer Motion",
+      "category": "Frontend",
+      "percentage": 92,
+      "icon": "Layers",
+      "status": true
+    },
+    {
+      "id": "sk-4",
+      "name": "Redux Toolkit & Zustand",
+      "category": "Frontend",
+      "percentage": 88,
+      "icon": "Workflow",
+      "status": true
+    },
+    {
+      "id": "sk-5",
       "name": "PHP (Symfony & Laravel)",
       "category": "Backend",
       "percentage": 90,
@@ -98,15 +130,15 @@
       "status": true
     },
     {
-      "id": "sk-4",
-      "name": "Node.js (Express)",
+      "id": "sk-6",
+      "name": "Node.js & Express.js",
       "category": "Backend",
       "percentage": 92,
       "icon": "Terminal",
       "status": true
     },
     {
-      "id": "sk-5",
+      "id": "sk-7",
       "name": "ASP.NET Core (C#)",
       "category": "Backend",
       "percentage": 80,
@@ -114,59 +146,99 @@
       "status": true
     },
     {
-      "id": "sk-6",
-      "name": "Python / Automation",
-      "category": "Scraping & Automation",
-      "percentage": 95,
+      "id": "sk-8",
+      "name": "Python (FastAPI & Django)",
+      "category": "Backend",
+      "percentage": 88,
       "icon": "Play",
       "status": true
     },
     {
-      "id": "sk-7",
-      "name": "Scrapy / Selenium / BS4",
-      "category": "Scraping & Automation",
-      "percentage": 95,
-      "icon": "GitCommit",
+      "id": "sk-9",
+      "name": "REST & GraphQL APIs / WebSockets",
+      "category": "Backend",
+      "percentage": 93,
+      "icon": "RefreshCw",
       "status": true
     },
     {
-      "id": "sk-8",
-      "name": "MySQL & PostgreSQL",
+      "id": "sk-10",
+      "name": "MySQL & PostgreSQL (Indexing & ORMs)",
       "category": "Database",
-      "percentage": 88,
+      "percentage": 90,
       "icon": "Database",
       "status": true
     },
     {
-      "id": "sk-9",
-      "name": "MongoDB",
+      "id": "sk-11",
+      "name": "MongoDB & Mongoose",
       "category": "Database",
       "percentage": 85,
       "icon": "Database",
       "status": true
     },
     {
-      "id": "sk-10",
-      "name": "Git / CI-CD Pipelines",
+      "id": "sk-12",
+      "name": "Redis Caching & Session Stores",
+      "category": "Database",
+      "percentage": 82,
+      "icon": "Database",
+      "status": true
+    },
+    {
+      "id": "sk-13",
+      "name": "Python Scrapy & Async Web Crawlers",
+      "category": "Scraping & Automation",
+      "percentage": 96,
+      "icon": "Workflow",
+      "status": true
+    },
+    {
+      "id": "sk-14",
+      "name": "Playwright, Selenium & Headless Chrome",
+      "category": "Scraping & Automation",
+      "percentage": 95,
+      "icon": "GitCommit",
+      "status": true
+    },
+    {
+      "id": "sk-15",
+      "name": "Proxy Rotation & Captcha Bypassing",
+      "category": "Scraping & Automation",
+      "percentage": 94,
+      "icon": "RefreshCw",
+      "status": true
+    },
+    {
+      "id": "sk-16",
+      "name": "Git, GitHub Actions & CI/CD",
       "category": "Tools & Cloud",
-      "percentage": 90,
+      "percentage": 92,
       "icon": "GitPullRequest",
       "status": true
     },
     {
-      "id": "sk-11",
-      "name": "AWS & Azure Services",
+      "id": "sk-17",
+      "name": "Docker & Containerization",
       "category": "Tools & Cloud",
-      "percentage": 80,
+      "percentage": 85,
       "icon": "Cloud",
       "status": true
     },
     {
-      "id": "sk-12",
-      "name": "REST / GraphQL APIs",
+      "id": "sk-18",
+      "name": "AWS Services (EC2, S3, RDS, Lambda)",
       "category": "Tools & Cloud",
-      "percentage": 93,
-      "icon": "RefreshCw",
+      "percentage": 82,
+      "icon": "Cloud",
+      "status": true
+    },
+    {
+      "id": "sk-19",
+      "name": "AI & LLM Integration (Gemini / OpenAI API)",
+      "category": "Tools & Cloud",
+      "percentage": 88,
+      "icon": "Cpu",
       "status": true
     }
   ],
@@ -436,6 +508,99 @@
       "status": true,
       "seoTitle": "TrendCatch Business Web Maintenance - Ritesh Kumar",
       "seoDescription": "Modern professional corporate web page maintained and developed by Ritesh Kumar."
+    },
+    {
+      "id": "proj-10",
+      "title": "FinPulse AI - Predictive Risk Analytics Dashboard",
+      "slug": "finpulse-ai-risk-analytics",
+      "category": "SaaS & Dashboard",
+      "techStack": [
+        "React.js",
+        "TypeScript",
+        "Node.js",
+        "Python FastAPI",
+        "Gemini API"
+      ],
+      "description": "An AI-powered institutional financial risk evaluation engine. Analyzes market volatility parameters, credit scores, and automated news sentiment streams with interactive chart visualizers and automated PDF audit generation.",
+      "features": [
+        "Real-time financial ticker ingestion via Redis Pub/Sub",
+        "Automated AI sentiment parsing using Gemini 1.5 Flash API",
+        "Interactive risk metrics heatmap built with Highcharts & D3",
+        "Role-based audit trails compliant with SOC-2 security protocols"
+      ],
+      "clientName": "FinPulse Global Ltd",
+      "projectUrl": "https://finpulse-ai.example.com",
+      "githubUrl": "https://github.com/ritesh-kumar/finpulse-risk-engine",
+      "thumbnail": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&q=80&w=800",
+      "gallery": [
+        "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&q=80&w=800"
+      ],
+      "featured": true,
+      "status": true,
+      "seoTitle": "FinPulse AI Predictive Analytics - Ritesh Kumar Portfolio",
+      "seoDescription": "Institutional financial analytics and risk assessment dashboard built with React, Node.js, and Gemini API."
+    },
+    {
+      "id": "proj-11",
+      "title": "LogiRoute - Multi-Fleet Route & Shipping Optimizer",
+      "slug": "logiroute-fleet-shipping-optimizer",
+      "category": "Python Automation",
+      "techStack": [
+        "Python",
+        "Django",
+        "Google Maps API",
+        "PostgreSQL",
+        "Celery"
+      ],
+      "description": "Automated logistics dispatching engine parsing daily freight manifest orders across 500+ delivery vehicles. Computes optimal mileage trajectories, reduces fuel consumption by 18%, and tracks live GPS coordinates.",
+      "features": [
+        "Async job queue with Celery & Redis handling 10k daily dispatch tasks",
+        "Google Maps Matrix API routing algorithm with traffic forecasting",
+        "Live driver telemetry updates via WebSockets & MQTT",
+        "Automated customer SMS & WhatsApp delivery notifications"
+      ],
+      "clientName": "TransCarrier Logistics",
+      "projectUrl": "https://logiroute-demo.example.com",
+      "githubUrl": "",
+      "thumbnail": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
+      "gallery": [
+        "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800"
+      ],
+      "featured": false,
+      "status": true,
+      "seoTitle": "LogiRoute Fleet Management SaaS - Ritesh Kumar",
+      "seoDescription": "Multi-fleet shipping optimization and routing engine built with Python, Django, and Google Maps API."
+    },
+    {
+      "id": "proj-12",
+      "title": "MediConnect Telehealth & Patient Care Portal",
+      "slug": "mediconnect-telehealth-patient-portal",
+      "category": "Full Stack Development",
+      "techStack": [
+        "Next.js",
+        "PHP Symfony",
+        "MySQL",
+        "WebRTC",
+        "Tailwind CSS"
+      ],
+      "description": "HIPAA-compliant telemedicine portal connecting patients with certified specialists. Features real-time HD video consultations, digital prescription signing, automated calendar sync, and encrypted health records storage.",
+      "features": [
+        "Peer-to-peer encrypted WebRTC video conference rooms",
+        "Automated Google Calendar & Outlook slot synchronization",
+        "Digital prescription PDF generation with cryptographic signatures",
+        "Symfony security core ensuring strict patient privacy compliance"
+      ],
+      "clientName": "MediHealth Systems",
+      "projectUrl": "https://mediconnect-portal.example.com",
+      "githubUrl": "https://github.com/ritesh-kumar/mediconnect-telehealth",
+      "thumbnail": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800",
+      "gallery": [
+        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800"
+      ],
+      "featured": true,
+      "status": true,
+      "seoTitle": "MediConnect Telehealth Platform - Ritesh Kumar",
+      "seoDescription": "HIPAA-compliant telehealth and patient scheduling portal engineered by Ritesh Kumar."
     }
   ],
   "experience": [
@@ -567,14 +732,68 @@
       "company": "Apex Retailers (US)",
       "rating": 5,
       "message": "Our catalog is dynamically scraped and tracked across thousands of lines of SKUs continuously. Ritesh's Python web scraping pipelines reduced manual updates by 30+ hours/week!",
-      "photo": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200",
+      "photo": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
+      "status": true
+    },
+    {
+      "id": "tst-3",
+      "clientName": "Marcus Brody",
+      "company": "CloudFlow Solutions (Canada)",
+      "rating": 5,
+      "message": "Ritesh upgraded our microservice backend APIs to Node.js and PostgreSQL with zero downtime. Exceptional attention to query optimization and security standards.",
+      "photo": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200",
+      "status": true
+    },
+    {
+      "id": "tst-4",
+      "clientName": "Sophia Chen",
+      "company": "SwiftGear E-Commerce (Singapore)",
+      "rating": 5,
+      "message": "The headless Next.js e-commerce storefront Ritesh developed increased our mobile conversion rate by 42%. Lightning fast page loads and seamless Stripe checkout!",
+      "photo": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200",
+      "status": true
+    },
+    {
+      "id": "tst-5",
+      "clientName": "Alexander Petrov",
+      "company": "Logistics Global (Germany)",
+      "rating": 5,
+      "message": "Automating our tender bidding workflow with Ritesh saved our team hundreds of operational hours. His grasp of complex requirements is second to none.",
+      "photo": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200",
+      "status": true
+    },
+    {
+      "id": "tst-6",
+      "clientName": "Emily Watson",
+      "company": "HealthTrack Solutions (Australia)",
+      "rating": 5,
+      "message": "Ritesh and his team built our claims management dashboard with high accessibility, real-time status updates, and beautiful responsive layouts.",
+      "photo": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200",
+      "status": true
+    },
+    {
+      "id": "tst-7",
+      "clientName": "Rajesh Nair",
+      "company": "TechCorp APAC (India)",
+      "rating": 5,
+      "message": "Outstanding custom web application development! Ritesh transformed our legacy PHP portal into a high-speed React & Laravel architecture.",
+      "photo": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=200",
+      "status": true
+    },
+    {
+      "id": "tst-8",
+      "clientName": "Sarah Jenkins",
+      "company": "DataPulse Analytics (US)",
+      "rating": 5,
+      "message": "The multi-threaded Python scrapers Ritesh built handle proxy rotation and captcha bypassing effortlessly with 99.8% uptime. A true scraping expert.",
+      "photo": "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&q=80&w=200",
       "status": true
     }
   ],
   "blogs": [
     {
       "id": "bl-1",
-      "title": "Why Symfony is Still My Top Choice for Complex Enterprise SaaS backends",
+      "title": "Why Symfony is Still My Top Choice for Complex Enterprise SaaS Backends",
       "slug": "why-symfony-top-choice-enterprise-saas",
       "category": "PHP & Symfony",
       "content": "PHP has undergone a massive renaissance, and Symfony is at the forefront of this evolution. When constructing critical software pipelines, its dependency injection container, micro-kernel architecture, and powerful Doctrine ORM are exceptional assets. In this article, I discuss how Symfony's strict coding standards prevent bugs and outline custom commands routines that accelerate deployments.",
@@ -607,10 +826,152 @@
       "createdAt": "2026-06-01",
       "seoTitle": "Bypassing Bot Detectors in High-Volume Web Scraping - Ritesh Kumar",
       "seoDescription": "Learn to build resilient headless crawling engines with automated proxy cycling and stealth configurations."
+    },
+    {
+      "id": "bl-3",
+      "title": "Architecting High-Throughput Node.js Microservices with Redis Caching",
+      "slug": "node-microservices-redis-caching-throughput",
+      "category": "Backend Architecture",
+      "content": "Scaling Node.js event loops under thousands of concurrent requests requires a disciplined architectural layout. By implementing Redis memory stores for session validation, database query caching, and pub/sub queue distribution, backend throughput increases exponentially while minimizing database read latency.",
+      "featuredImage": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=800",
+      "tags": [
+        "Node.js",
+        "Redis",
+        "Microservices",
+        "Performance"
+      ],
+      "status": "published",
+      "createdAt": "2026-06-10",
+      "seoTitle": "Node.js High Concurrency Architecture - Ritesh Kumar",
+      "seoDescription": "A guide on scaling Node.js microservices with Redis caching and pub/sub message queues."
+    },
+    {
+      "id": "bl-4",
+      "title": "React 18 + Next.js App Router: Performance Optimization Blueprints",
+      "slug": "react18-nextjs-app-router-performance",
+      "category": "Frontend Engineering",
+      "content": "The Next.js App Router revolutionized server-side component streaming. Exploring partial hydration strategies, memoized layout boundaries, image CDN optimizations, and bundle splitting tactics that achieve perfect 100/100 Lighthouse performance scores across complex SaaS web applications.",
+      "featuredImage": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=800",
+      "tags": [
+        "Next.js",
+        "React 18",
+        "Performance",
+        "Lighthouse"
+      ],
+      "status": "published",
+      "createdAt": "2026-06-22",
+      "seoTitle": "Next.js App Router Performance Guide - Ritesh Kumar Blog",
+      "seoDescription": "Blueprint strategies for optimizing Next.js React applications for zero layout shift and instant page loads."
+    },
+    {
+      "id": "bl-5",
+      "title": "Building Resilient Distributed Web Crawlers with Python Scrapy & Celery",
+      "slug": "distributed-crawlers-python-scrapy-celery",
+      "category": "Python Automation",
+      "content": "Extracting millions of SKU records across global marketplaces requires distributed task scheduling. In this tutorial, we construct a resilient crawling network combining Python Scrapy spiders, Celery background workers, and RabbitMQ message brokers with automated dead-letter retries.",
+      "featuredImage": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800",
+      "tags": [
+        "Python",
+        "Celery",
+        "RabbitMQ",
+        "Scrapy"
+      ],
+      "status": "published",
+      "createdAt": "2026-07-02",
+      "seoTitle": "Distributed Python Web Crawlers - Ritesh Kumar",
+      "seoDescription": "How to build distributed high-volume data extraction clusters with Python, Celery, and Scrapy."
+    },
+    {
+      "id": "bl-6",
+      "title": "PostgreSQL Query Tuning: Indexing Strategies for Million-Row Tables",
+      "slug": "postgresql-query-tuning-indexing-million-rows",
+      "category": "Database Systems",
+      "content": "Slow SQL queries kill user experience. Dive into EXPLAIN ANALYZE execution trees, B-Tree vs GIN indexing models, query connection pooling with PgBouncer, and table partitioning techniques for ultra-fast time-series and transaction databases.",
+      "featuredImage": "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&q=80&w=800",
+      "tags": [
+        "PostgreSQL",
+        "SQL",
+        "Indexing",
+        "Performance"
+      ],
+      "status": "published",
+      "createdAt": "2026-07-11",
+      "seoTitle": "PostgreSQL Database Performance Tuning - Ritesh Kumar",
+      "seoDescription": "Mastering PostgreSQL indexing, EXPLAIN plans, and connection pooling for enterprise data systems."
+    },
+    {
+      "id": "bl-7",
+      "title": "Integrating AI & LLMs into Production Apps with Gemini API & Vector Search",
+      "slug": "integrating-ai-llm-gemini-api-vector-search",
+      "category": "AI Systems",
+      "content": "Bringing GenAI capabilities into existing web platforms shouldn't mean sacrificing security or speed. Learn how to connect Google's Gemini 1.5 Flash API with pgvector embeddings to construct smart knowledge-retrieval (RAG) pipelines and automated document summarizers.",
+      "featuredImage": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800",
+      "tags": [
+        "Gemini API",
+        "AI",
+        "Vector Search",
+        "LLM"
+      ],
+      "status": "published",
+      "createdAt": "2026-07-15",
+      "seoTitle": "AI & Gemini API Production Integration - Ritesh Kumar",
+      "seoDescription": "Step-by-step guide for adding Gemini AI capabilities and vector search retrieval to full-stack applications."
+    },
+    {
+      "id": "bl-8",
+      "title": "Designing Custom Role-Based Access Control (RBAC) in Enterprise SaaS",
+      "slug": "custom-rbac-role-based-access-control-saas",
+      "category": "Security & Auth",
+      "content": "Security is non-negotiable in multi-tenant SaaS. Explore clean granular authorization matrices, JWT token validation routines, middleware gateguards, and audit logging patterns in Node.js and PHP backends.",
+      "featuredImage": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&q=80&w=800",
+      "tags": [
+        "Security",
+        "RBAC",
+        "JWT",
+        "Auth"
+      ],
+      "status": "published",
+      "createdAt": "2026-07-19",
+      "seoTitle": "Enterprise RBAC & Security Design - Ritesh Kumar",
+      "seoDescription": "A comprehensive approach to designing secure multi-tenant role-based permissions in SaaS products."
+    },
+    {
+      "id": "bl-9",
+      "title": "Headless E-Commerce Architecture: Next.js + Stripe Integration Patterns",
+      "slug": "headless-ecommerce-nextjs-stripe-integration",
+      "category": "E-Commerce",
+      "content": "Traditional monolithic stores suffer from rigid layouts and slow load times. See how decoupling the frontend with Next.js and powering payments via Stripe webhooks yields 40%+ higher conversion rates and bulletproof transaction safety.",
+      "featuredImage": "https://images.unsplash.com/photo-1556742049-0a67d983416e?auto=format&fit=crop&q=80&w=800",
+      "tags": [
+        "E-Commerce",
+        "Next.js",
+        "Stripe",
+        "Headless"
+      ],
+      "status": "published",
+      "createdAt": "2026-07-22",
+      "seoTitle": "Headless Next.js E-Commerce - Ritesh Kumar",
+      "seoDescription": "Building high-conversion headless e-commerce storefronts with Next.js, Tailwind, and Stripe API."
+    },
+    {
+      "id": "bl-10",
+      "title": "CI/CD Pipeline Automation with GitHub Actions & Docker Cloud Containers",
+      "slug": "cicd-pipeline-automation-github-actions-docker",
+      "category": "DevOps & Cloud",
+      "content": "Automate testing, linting, building, and deployment cycles to eliminate production downtime. Learn to configure GitHub Actions workflows that build multi-stage Docker images and push seamlessly to AWS Cloud Run or VPS instances.",
+      "featuredImage": "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?auto=format&fit=crop&q=80&w=800",
+      "tags": [
+        "DevOps",
+        "Docker",
+        "GitHub Actions",
+        "CI/CD"
+      ],
+      "status": "published",
+      "createdAt": "2026-07-25",
+      "seoTitle": "CI/CD DevOps & Docker Deployment - Ritesh Kumar",
+      "seoDescription": "Automating cloud software deployments using GitHub Actions, Docker containers, and zero-downtime restarts."
     }
   ],
-  "contacts": [],
-  "visitors": [],
   "seo": {
     "metaTitle": "Ritesh Kumar | Freelance Full-Stack Developer & Web Scraping Expert",
     "metaDescription": "Professional Full-Stack Developer with 4+ years of experience in React, Next.js, Node.js, PHP Laravel/Symfony, Web Scraping, and custom web applications.",
