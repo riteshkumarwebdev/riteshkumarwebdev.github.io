@@ -170,11 +170,11 @@ export const AnimatedProjectsShowcase: React.FC<AnimatedProjectsShowcaseProps> =
                     transition={{ duration: 0.4, delay: idx * 0.05 }}
                     whileHover={{ y: -6 }}
                     className={`rounded-3xl ${t.bgCard} border ${t.borderCard} hover:border-indigo-500/40 transition-all overflow-hidden flex flex-col justify-between group shadow-xl relative ${
-                      viewMode === "bento" && isFeatured ? "md:col-span-2 lg:col-span-2" : ""
+                      "h-full"
                     }`}
                   >
                     {/* TOP IMAGE & HOVER OVERLAY */}
-                    <div className="relative h-52 sm:h-60 overflow-hidden bg-slate-950">
+                    <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden bg-slate-950">
                       <img 
                         src={project.thumbnail || "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800"} 
                         alt={project.title}
@@ -182,9 +182,9 @@ export const AnimatedProjectsShowcase: React.FC<AnimatedProjectsShowcaseProps> =
                         onError={(e) => {
                           e.currentTarget.src = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800";
                         }}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100"
+                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
+                      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-slate-950/60 to-transparent" />
 
                       {/* FEATURED BADGE */}
                       <div className="absolute top-4 left-4 flex items-center gap-2">
@@ -210,15 +210,15 @@ export const AnimatedProjectsShowcase: React.FC<AnimatedProjectsShowcaseProps> =
                     </div>
 
                     {/* CONTENT BODY */}
-                    <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                    <div className="p-5 space-y-4 flex-1 flex flex-col justify-between">
                       <div className="space-y-2">
                         <div className="flex items-center justify-between">
-                          <h3 className={`text-lg sm:text-xl font-bold ${t.textBright} group-hover:text-indigo-400 transition-colors line-clamp-1`}>
+                          <h3 className={`text-lg sm:text-xl font-bold ${t.textBright} group-hover:text-indigo-400 transition-colors line-clamp-2 leading-snug min-h-[3.1rem]`}>
                             {project.title}
                           </h3>
                         </div>
 
-                        <p className={`text-xs ${t.textMuted} leading-relaxed line-clamp-2`}>
+                        <p className={`text-xs ${t.textMuted} leading-relaxed line-clamp-2 min-h-[2.5rem]`}>
                           {project.description}
                         </p>
                       </div>

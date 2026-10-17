@@ -258,11 +258,11 @@
       "clientName": "VivanWebSolution",
       "projectUrl": "https://vivanwebsolution.com/",
       "githubUrl": "",
-      "thumbnail": "assets/projects/vivanwebsolution.png",
+      "thumbnail": "assets/projects/vivanwebsolution.jpg",
       "gallery": [
-        "assets/projects/vivanwebsolution.png"
+        "assets/projects/vivanwebsolution.jpg"
       ],
-      "featured": true,
+      "featured": false,
       "status": true,
       "seoTitle": "Digital Agency Website & Marketing Platform - Ritesh Kumar",
       "seoDescription": "Vivan Web Solution is a digital agency that specializes in web development, design, and online marketing to help businesses enhance their online presence and ac"
@@ -282,41 +282,17 @@
       "clientName": "Talma",
       "projectUrl": "https://www.talma.cat/",
       "githubUrl": "",
-      "thumbnail": "assets/projects/talma.png",
+      "thumbnail": "assets/projects/talma.jpg",
       "gallery": [
-        "assets/projects/talma.png"
+        "assets/projects/talma.jpg"
       ],
-      "featured": true,
+      "featured": false,
       "status": true,
       "seoTitle": "Creative Branding Agency Website - Ritesh Kumar",
       "seoDescription": "Talma.cat is a creative agency that specializes in branding, design, and digital solutions, helping businesses build strong identities and grow online."
     },
     {
       "id": "proj-3",
-      "title": "Learning Disability Support Platform",
-      "slug": "rogles-aventura",
-      "category": "Client Website",
-      "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
-      ],
-      "description": "Rogles.org is a platform dedicated to supporting and empowering individuals with learning disabilities by offering specialized resources and services.",
-      "features": [],
-      "clientName": "Rogles Aventura",
-      "projectUrl": "https://rogles.org/en/",
-      "githubUrl": "",
-      "thumbnail": "assets/projects/rogles-aventura.svg",
-      "gallery": [
-        "assets/projects/rogles-aventura.svg"
-      ],
-      "featured": true,
-      "status": true,
-      "seoTitle": "Learning Disability Support Platform - Ritesh Kumar",
-      "seoDescription": "Rogles.org is a platform dedicated to supporting and empowering individuals with learning disabilities by offering specialized resources and services."
-    },
-    {
-      "id": "proj-4",
       "title": "Eco Holiday Cottages Booking Site",
       "slug": "underthethatch",
       "category": "Client Website",
@@ -330,9 +306,9 @@
       "clientName": "UnderTheThatch",
       "projectUrl": "https://www.underthethatch.co.uk/",
       "githubUrl": "",
-      "thumbnail": "assets/projects/underthethatch.png",
+      "thumbnail": "assets/projects/underthethatch.jpg",
       "gallery": [
-        "assets/projects/underthethatch.png"
+        "assets/projects/underthethatch.jpg"
       ],
       "featured": false,
       "status": true,
@@ -340,7 +316,7 @@
       "seoDescription": "Under the Thatch offers unique, eco-friendly holiday cottages in the heart of the Welsh countryside, providing a sustainable and charming getaway experience."
     },
     {
-      "id": "proj-5",
+      "id": "proj-4",
       "title": "Psychology & Spiritual Resources Hub",
       "slug": "psychurch",
       "category": "Client Website",
@@ -354,9 +330,9 @@
       "clientName": "Psychurch",
       "projectUrl": "https://psychurch.org/",
       "githubUrl": "",
-      "thumbnail": "assets/projects/psychurch.png",
+      "thumbnail": "assets/projects/psychurch.jpg",
       "gallery": [
-        "assets/projects/psychurch.png"
+        "assets/projects/psychurch.jpg"
       ],
       "featured": false,
       "status": true,
@@ -364,79 +340,7 @@
       "seoDescription": "Psychurch.org is a platform that combines psychological insights with spiritual practices to offer resources for personal growth, healing, and well-being."
     },
     {
-      "id": "proj-6",
-      "title": "Travel Guide & Destination Recommendations",
-      "slug": "best-destination",
-      "category": "Client Website",
-      "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
-      ],
-      "description": "Best-Destination.com offers expert travel guides and recommendations to help travelers discover top destinations, plan unforgettable trips, and experience the best of the world’s sights.",
-      "features": [],
-      "clientName": "Best Destination",
-      "projectUrl": "https://web.archive.org/web/2026/https://best-destination.com/",
-      "githubUrl": "",
-      "thumbnail": "assets/projects/best-destination.png",
-      "gallery": [
-        "assets/projects/best-destination.png"
-      ],
-      "featured": false,
-      "status": true,
-      "seoTitle": "Travel Guide & Destination Recommendations - Ritesh Kumar",
-      "seoDescription": "Best-Destination.com offers expert travel guides and recommendations to help travelers discover top destinations, plan unforgettable trips, and experience the b"
-    },
-    {
-      "id": "proj-7",
-      "title": "Product & Service Reviews Portal",
-      "slug": "reviewcentre",
-      "category": "Client Website",
-      "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
-      ],
-      "description": "ReviewCentre.com is an online platform that allows users to share and read reviews on a wide range of products and services, helping consumers make informed decisions.",
-      "features": [],
-      "clientName": "Reviewcentre",
-      "projectUrl": "https://web.archive.org/web/2026/https://www.reviewcentre.com/",
-      "githubUrl": "",
-      "thumbnail": "assets/projects/reviewcentre.svg",
-      "gallery": [
-        "assets/projects/reviewcentre.svg"
-      ],
-      "featured": false,
-      "status": true,
-      "seoTitle": "Product & Service Reviews Portal - Ritesh Kumar",
-      "seoDescription": "ReviewCentre.com is an online platform that allows users to share and read reviews on a wide range of products and services, helping consumers make informed dec"
-    },
-    {
-      "id": "proj-8",
-      "title": "AI Business Growth Website",
-      "slug": "ai-growth",
-      "category": "Client Website",
-      "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
-      ],
-      "description": "AI-Growth.de is a platform dedicated to helping businesses harness the power of artificial intelligence to drive growth, innovation, and efficiency in their operations.",
-      "features": [],
-      "clientName": "AI Growth",
-      "projectUrl": "",
-      "githubUrl": "",
-      "thumbnail": "assets/projects/ai-growth.svg",
-      "gallery": [
-        "assets/projects/ai-growth.svg"
-      ],
-      "featured": false,
-      "status": true,
-      "seoTitle": "AI Business Growth Website - Ritesh Kumar",
-      "seoDescription": "AI-Growth.de is a platform dedicated to helping businesses harness the power of artificial intelligence to drive growth, innovation, and efficiency in their ope"
-    },
-    {
-      "id": "proj-9",
+      "id": "proj-5",
       "title": "Sustainable Products eCommerce Store",
       "slug": "juneberry",
       "category": "Client Website",
@@ -450,9 +354,9 @@
       "clientName": "Juneberry",
       "projectUrl": "https://juneberry.com/",
       "githubUrl": "",
-      "thumbnail": "assets/projects/juneberry.png",
+      "thumbnail": "assets/projects/juneberry.jpg",
       "gallery": [
-        "assets/projects/juneberry.png"
+        "assets/projects/juneberry.jpg"
       ],
       "featured": false,
       "status": true,
@@ -460,7 +364,7 @@
       "seoDescription": "Juneberry.com offers a curated collection of sustainable, high-quality products designed to enhance everyday life while supporting environmental and social resp"
     },
     {
-      "id": "proj-10",
+      "id": "proj-6",
       "title": "Cybersecurity Policy Journal Platform",
       "slug": "journal-of-cyber-policy",
       "category": "Client Website",
@@ -474,9 +378,9 @@
       "clientName": "Journal Of Cyber Policy",
       "projectUrl": "https://journalofcyberpolicy.com/",
       "githubUrl": "",
-      "thumbnail": "assets/projects/journal-of-cyber-policy.png",
+      "thumbnail": "assets/projects/journal-of-cyber-policy.jpg",
       "gallery": [
-        "assets/projects/journal-of-cyber-policy.png"
+        "assets/projects/journal-of-cyber-policy.jpg"
       ],
       "featured": false,
       "status": true,
@@ -484,31 +388,7 @@
       "seoDescription": "The Journal of Cyber Policy is a platform that explores critical issues in cybersecurity, technology policy, and digital risk management."
     },
     {
-      "id": "proj-11",
-      "title": "Residential Community & Custom Homes Site",
-      "slug": "highland-oaks",
-      "category": "Client Website",
-      "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
-      ],
-      "description": "Highland Oaks in Lubbock, Texas, is a residential community offering spacious lots, custom homes, and a peaceful neighborhood setting.",
-      "features": [],
-      "clientName": "Highland Oaks",
-      "projectUrl": "",
-      "githubUrl": "",
-      "thumbnail": "assets/projects/highland-oaks.svg",
-      "gallery": [
-        "assets/projects/highland-oaks.svg"
-      ],
-      "featured": false,
-      "status": true,
-      "seoTitle": "Residential Community & Custom Homes Site - Ritesh Kumar",
-      "seoDescription": "Highland Oaks in Lubbock, Texas, is a residential community offering spacious lots, custom homes, and a peaceful neighborhood setting."
-    },
-    {
-      "id": "proj-12",
+      "id": "proj-7",
       "title": "Gutter Guard Online Estimate Tool",
       "slug": "atlas-gutter-guard",
       "category": "Client Website",
@@ -522,9 +402,9 @@
       "clientName": "Atlas Gutter Guard",
       "projectUrl": "https://measure.atlasgutterguard.com/",
       "githubUrl": "",
-      "thumbnail": "assets/projects/atlas-gutter-guard.svg",
+      "thumbnail": "assets/projects/atlas-gutter-guard.jpg",
       "gallery": [
-        "assets/projects/atlas-gutter-guard.svg"
+        "assets/projects/atlas-gutter-guard.jpg"
       ],
       "featured": false,
       "status": true,
@@ -532,7 +412,7 @@
       "seoDescription": "Atlas Gutter Guard provides customized solutions for gutter protection, offering free estimates through their online measurement tool."
     },
     {
-      "id": "proj-13",
+      "id": "proj-8",
       "title": "Gutter Protection Measurement Calculator",
       "slug": "raptor-gutter-guard",
       "category": "Client Website",
@@ -546,9 +426,9 @@
       "clientName": "Raptor Gutter Guard",
       "projectUrl": "https://measure.raptorgutterguard.com/",
       "githubUrl": "",
-      "thumbnail": "assets/projects/raptor-gutter-guard.png",
+      "thumbnail": "assets/projects/raptor-gutter-guard.jpg",
       "gallery": [
-        "assets/projects/raptor-gutter-guard.png"
+        "assets/projects/raptor-gutter-guard.jpg"
       ],
       "featured": false,
       "status": true,
@@ -556,7 +436,7 @@
       "seoDescription": "Raptor Gutter Guard offers an online measurement tool to provide free estimates for durable and effective gutter protection systems."
     },
     {
-      "id": "proj-14",
+      "id": "proj-9",
       "title": "Trenchless Pipe Repair Company Website",
       "slug": "industrial-cipp",
       "category": "Client Website",
@@ -570,9 +450,9 @@
       "clientName": "Industrial Cipp",
       "projectUrl": "https://industrialcipp.com/",
       "githubUrl": "",
-      "thumbnail": "assets/projects/industrial-cipp.png",
+      "thumbnail": "assets/projects/industrial-cipp.jpg",
       "gallery": [
-        "assets/projects/industrial-cipp.png"
+        "assets/projects/industrial-cipp.jpg"
       ],
       "featured": false,
       "status": true,
@@ -580,7 +460,7 @@
       "seoDescription": "Industrial CIPP specializes in trenchless pipe repair solutions, utilizing cured-in-place pipe (CIPP) technology for industrial and commercial applications."
     },
     {
-      "id": "proj-15",
+      "id": "proj-10",
       "title": "Independent Insurance Agency Network",
       "slug": "the-advisors",
       "category": "Client Website",
@@ -594,9 +474,9 @@
       "clientName": "The Advisors",
       "projectUrl": "https://www.theadvisors.org/",
       "githubUrl": "",
-      "thumbnail": "assets/projects/the-advisors.png",
+      "thumbnail": "assets/projects/the-advisors.jpg",
       "gallery": [
-        "assets/projects/the-advisors.png"
+        "assets/projects/the-advisors.jpg"
       ],
       "featured": false,
       "status": true,
@@ -604,7 +484,7 @@
       "seoDescription": "The Advisors is a network of independent insurance agencies dedicated to providing personalized insurance solutions and expert guidance."
     },
     {
-      "id": "proj-16",
+      "id": "proj-11",
       "title": "Digital Pet ID Tag Platform",
       "slug": "zulutails",
       "category": "Client Website",
@@ -618,9 +498,9 @@
       "clientName": "ZuluTails",
       "projectUrl": "https://zulutails.com/",
       "githubUrl": "",
-      "thumbnail": "assets/projects/zulutails.png",
+      "thumbnail": "assets/projects/zulutails.jpg",
       "gallery": [
-        "assets/projects/zulutails.png"
+        "assets/projects/zulutails.jpg"
       ],
       "featured": false,
       "status": true,
@@ -628,7 +508,7 @@
       "seoDescription": "ZuluTails is a pet identification platform that uses digital ID tags to help reunite lost pets with their owners quickly and securely."
     },
     {
-      "id": "proj-17",
+      "id": "proj-12",
       "title": "Documentary Photography & Human Rights Platform",
       "slug": "fotoevidence",
       "category": "Client Website",
@@ -642,9 +522,9 @@
       "clientName": "FotoEvidence",
       "projectUrl": "https://fotoevidence.com/",
       "githubUrl": "",
-      "thumbnail": "assets/projects/fotoevidence.png",
+      "thumbnail": "assets/projects/fotoevidence.jpg",
       "gallery": [
-        "assets/projects/fotoevidence.png"
+        "assets/projects/fotoevidence.jpg"
       ],
       "featured": false,
       "status": true,
@@ -652,79 +532,7 @@
       "seoDescription": "FotoEvidence is a platform dedicated to using photography to document social justice issues, human rights violations, and injustices worldwide through powerful "
     },
     {
-      "id": "proj-18",
-      "title": "Shared Betting Syndicate Manager",
-      "slug": "punt-club",
-      "category": "Client Website",
-      "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
-      ],
-      "description": "Punt Club is a platform that helps groups manage shared betting syndicates, simplifying the process of pooling funds and placing bets together.",
-      "features": [],
-      "clientName": "Punt Club",
-      "projectUrl": "https://www.puntclub.com/",
-      "githubUrl": "",
-      "thumbnail": "assets/projects/punt-club.svg",
-      "gallery": [
-        "assets/projects/punt-club.svg"
-      ],
-      "featured": false,
-      "status": true,
-      "seoTitle": "Shared Betting Syndicate Manager - Ritesh Kumar",
-      "seoDescription": "Punt Club is a platform that helps groups manage shared betting syndicates, simplifying the process of pooling funds and placing bets together."
-    },
-    {
-      "id": "proj-19",
-      "title": "Youth Athlete Age & Grade Verification",
-      "slug": "nsid",
-      "category": "Client Website",
-      "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
-      ],
-      "description": "National Sports ID is a platform that verifies youth athletes\\\\\\' ages and grades to ensure fair competition in sports.",
-      "features": [],
-      "clientName": "NSID",
-      "projectUrl": "",
-      "githubUrl": "",
-      "thumbnail": "assets/projects/nsid.svg",
-      "gallery": [
-        "assets/projects/nsid.svg"
-      ],
-      "featured": false,
-      "status": true,
-      "seoTitle": "Youth Athlete Age & Grade Verification - Ritesh Kumar",
-      "seoDescription": "National Sports ID is a platform that verifies youth athletes\\\\\\' ages and grades to ensure fair competition in sports."
-    },
-    {
-      "id": "proj-20",
-      "title": "Mobile Accessories Distribution Website",
-      "slug": "mobio",
-      "category": "Client Website",
-      "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
-      ],
-      "description": "MOBIO Distribution is a UK-based distributor specializing in premium mobile accessories and technology products.",
-      "features": [],
-      "clientName": "Mobio",
-      "projectUrl": "",
-      "githubUrl": "",
-      "thumbnail": "assets/projects/mobio.svg",
-      "gallery": [
-        "assets/projects/mobio.svg"
-      ],
-      "featured": false,
-      "status": true,
-      "seoTitle": "Mobile Accessories Distribution Website - Ritesh Kumar",
-      "seoDescription": "MOBIO Distribution is a UK-based distributor specializing in premium mobile accessories and technology products."
-    },
-    {
-      "id": "proj-21",
+      "id": "proj-13",
       "title": "PR & Communications Agency Website",
       "slug": "commsfactory",
       "category": "Client Website",
@@ -738,9 +546,9 @@
       "clientName": "CommsFactory",
       "projectUrl": "https://commsfactory.net/",
       "githubUrl": "",
-      "thumbnail": "assets/projects/commsfactory.png",
+      "thumbnail": "assets/projects/commsfactory.jpg",
       "gallery": [
-        "assets/projects/commsfactory.png"
+        "assets/projects/commsfactory.jpg"
       ],
       "featured": false,
       "status": true,
@@ -748,31 +556,7 @@
       "seoDescription": "CommsFactory provides professional PR and communication services, specializing in helping businesses gain media exposure and build their brand reputation."
     },
     {
-      "id": "proj-22",
-      "title": "Price Comparison Shopping Platform",
-      "slug": "pricespy",
-      "category": "Client Website",
-      "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
-      ],
-      "description": "PriceSpy is a comprehensive price comparison website that helps users find the best deals on products across various categories from different retailers.",
-      "features": [],
-      "clientName": "PriceSpy",
-      "projectUrl": "",
-      "githubUrl": "",
-      "thumbnail": "assets/projects/pricespy.svg",
-      "gallery": [
-        "assets/projects/pricespy.svg"
-      ],
-      "featured": false,
-      "status": true,
-      "seoTitle": "Price Comparison Shopping Platform - Ritesh Kumar",
-      "seoDescription": "PriceSpy is a comprehensive price comparison website that helps users find the best deals on products across various categories from different retailers."
-    },
-    {
-      "id": "proj-23",
+      "id": "proj-14",
       "title": "Agri Trade Marketplace for Farmers & Buyers",
       "slug": "meshectares",
       "category": "Client Website",
@@ -786,9 +570,9 @@
       "clientName": "MeshEctares",
       "projectUrl": "https://meshectares.com/",
       "githubUrl": "",
-      "thumbnail": "assets/projects/meshectares.png",
+      "thumbnail": "assets/projects/meshectares.jpg",
       "gallery": [
-        "assets/projects/meshectares.png"
+        "assets/projects/meshectares.jpg"
       ],
       "featured": false,
       "status": true,
@@ -796,7 +580,7 @@
       "seoDescription": "MeshEctares is a platform that connects farmers, buyers, and service providers to promote agricultural trade and innovation."
     },
     {
-      "id": "proj-24",
+      "id": "proj-15",
       "title": "Gutter Guard Product Store",
       "slug": "gutterglove",
       "category": "Client Website",
@@ -810,9 +594,9 @@
       "clientName": "Gutterglove",
       "projectUrl": "https://gutterglove.com/",
       "githubUrl": "",
-      "thumbnail": "assets/projects/gutterglove.png",
+      "thumbnail": "assets/projects/gutterglove.jpg",
       "gallery": [
-        "assets/projects/gutterglove.png"
+        "assets/projects/gutterglove.jpg"
       ],
       "featured": false,
       "status": true,
@@ -820,7 +604,7 @@
       "seoDescription": "Gutterglove offers high-quality gutter guard solutions designed to protect homes by keeping gutters free from debris while allowing water to flow through effici"
     },
     {
-      "id": "proj-25",
+      "id": "proj-16",
       "title": "Real Estate Financing Solutions Site",
       "slug": "carte-financement",
       "category": "Client Website",
@@ -834,9 +618,9 @@
       "clientName": "Carte Financement",
       "projectUrl": "https://cartefinancement.com/",
       "githubUrl": "",
-      "thumbnail": "assets/projects/carte-financement.png",
+      "thumbnail": "assets/projects/carte-financement.jpg",
       "gallery": [
-        "assets/projects/carte-financement.png"
+        "assets/projects/carte-financement.jpg"
       ],
       "featured": false,
       "status": true,
@@ -844,127 +628,7 @@
       "seoDescription": "Carte Financement specializes in personalized financing solutions for real estate and professional projects in France and internationally."
     },
     {
-      "id": "proj-26",
-      "title": "Electronic Signature Web App",
-      "slug": "email-signature-rescue",
-      "category": "Client Website",
-      "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
-      ],
-      "description": "The website eSignly provides a platform for secure and efficient electronic signature solutions, allowing users to sign and manage documents online.",
-      "features": [],
-      "clientName": "Email Signature Rescue",
-      "projectUrl": "",
-      "githubUrl": "",
-      "thumbnail": "assets/projects/email-signature-rescue.svg",
-      "gallery": [
-        "assets/projects/email-signature-rescue.svg"
-      ],
-      "featured": false,
-      "status": true,
-      "seoTitle": "Electronic Signature Web App - Ritesh Kumar",
-      "seoDescription": "The website eSignly provides a platform for secure and efficient electronic signature solutions, allowing users to sign and manage documents online."
-    },
-    {
-      "id": "proj-27",
-      "title": "Municipal Issue Tracking Portal",
-      "slug": "munireg",
-      "category": "Client Website",
-      "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
-      ],
-      "description": "The MuniReg website provides municipalities and organizations with tools to manage, track, and address issues related to vacant, abandoned, and foreclosed properties efficiently.",
-      "features": [],
-      "clientName": "Munireg",
-      "projectUrl": "",
-      "githubUrl": "",
-      "thumbnail": "assets/projects/munireg.svg",
-      "gallery": [
-        "assets/projects/munireg.svg"
-      ],
-      "featured": false,
-      "status": true,
-      "seoTitle": "Municipal Issue Tracking Portal - Ritesh Kumar",
-      "seoDescription": "The MuniReg website provides municipalities and organizations with tools to manage, track, and address issues related to vacant, abandoned, and foreclosed prope"
-    },
-    {
-      "id": "proj-28",
-      "title": "Symfony Subscription Payment System",
-      "slug": "mitm-pay",
-      "category": "Client Website",
-      "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
-      ],
-      "description": "Mitm Pay is made in Symfony.It is project about the subscription.",
-      "features": [],
-      "clientName": "Mitm Pay",
-      "projectUrl": "",
-      "githubUrl": "",
-      "thumbnail": "assets/projects/mitm-pay.svg",
-      "gallery": [
-        "assets/projects/mitm-pay.svg"
-      ],
-      "featured": false,
-      "status": true,
-      "seoTitle": "Symfony Subscription Payment System - Ritesh Kumar",
-      "seoDescription": "Mitm Pay is made in Symfony.It is project about the subscription."
-    },
-    {
-      "id": "proj-29",
-      "title": "Engineering Management ERP",
-      "slug": "the-turbochyll-erp",
-      "category": "Client Website",
-      "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
-      ],
-      "description": "The TurboChyll ERP platform appears to be a management system for engineers, likely providing tools to manage operations, tasks, and data related to engineering workflows efficiently.",
-      "features": [],
-      "clientName": "The TurboChyll ERP",
-      "projectUrl": "",
-      "githubUrl": "",
-      "thumbnail": "assets/projects/the-turbochyll-erp.svg",
-      "gallery": [
-        "assets/projects/the-turbochyll-erp.svg"
-      ],
-      "featured": false,
-      "status": true,
-      "seoTitle": "Engineering Management ERP - Ritesh Kumar",
-      "seoDescription": "The TurboChyll ERP platform appears to be a management system for engineers, likely providing tools to manage operations, tasks, and data related to engineering"
-    },
-    {
-      "id": "proj-30",
-      "title": "Device Distribution & Inventory Admin Panel",
-      "slug": "mobio-admin",
-      "category": "Client Website",
-      "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
-      ],
-      "description": "Mobio Admin is a centralized platform designed for efficiently managing mobile device distribution, inventory, and administrative tasks.",
-      "features": [],
-      "clientName": "Mobio Admin",
-      "projectUrl": "",
-      "githubUrl": "",
-      "thumbnail": "assets/projects/mobio-admin.svg",
-      "gallery": [
-        "assets/projects/mobio-admin.svg"
-      ],
-      "featured": false,
-      "status": true,
-      "seoTitle": "Device Distribution & Inventory Admin Panel - Ritesh Kumar",
-      "seoDescription": "Mobio Admin is a centralized platform designed for efficiently managing mobile device distribution, inventory, and administrative tasks."
-    },
-    {
-      "id": "proj-31",
+      "id": "proj-17",
       "title": "Cannabis Products Trading Marketplace",
       "slug": "the-weed-exchange",
       "category": "Client Website",
@@ -978,9 +642,9 @@
       "clientName": "The Weed Exchange",
       "projectUrl": "https://theweedexchange.com/",
       "githubUrl": "",
-      "thumbnail": "assets/projects/the-weed-exchange.svg",
+      "thumbnail": "assets/projects/the-weed-exchange.jpg",
       "gallery": [
-        "assets/projects/the-weed-exchange.svg"
+        "assets/projects/the-weed-exchange.jpg"
       ],
       "featured": false,
       "status": true,
@@ -988,86 +652,13 @@
       "seoDescription": "The Weed Exchange is an online platform for buying, selling, and trading cannabis-related products and services."
     },
     {
-      "id": "proj-32",
-      "title": "AI Growth Backend Admin Dashboard",
-      "slug": "ai-growth-admin",
-      "category": "Client Website",
-      "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
-      ],
-      "description": "AI-Growth.de is a platform dedicated to helping businesses harness the power of artificial intelligence to drive growth, innovation, and efficiency in their operations.",
-      "features": [],
-      "clientName": "AI Growth Admin",
-      "projectUrl": "",
-      "githubUrl": "",
-      "thumbnail": "assets/projects/ai-growth-admin.svg",
-      "gallery": [
-        "assets/projects/ai-growth-admin.svg"
-      ],
-      "featured": false,
-      "status": true,
-      "seoTitle": "AI Growth Backend Admin Dashboard - Ritesh Kumar",
-      "seoDescription": "AI-Growth.de is a platform dedicated to helping businesses harness the power of artificial intelligence to drive growth, innovation, and efficiency in their ope"
-    },
-    {
-      "id": "proj-33",
-      "title": "Secure Login Portal Web App",
-      "slug": "lapsify",
-      "category": "Client Website",
-      "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
-      ],
-      "description": "The website Lapsify appears to be a login page, likely for accessing a specific service or platform. It is difficult to determine its exact nature without more context.",
-      "features": [],
-      "clientName": "Lapsify",
-      "projectUrl": "",
-      "githubUrl": "",
-      "thumbnail": "assets/projects/lapsify.svg",
-      "gallery": [
-        "assets/projects/lapsify.svg"
-      ],
-      "featured": false,
-      "status": true,
-      "seoTitle": "Secure Login Portal Web App - Ritesh Kumar",
-      "seoDescription": "The website Lapsify appears to be a login page, likely for accessing a specific service or platform. It is difficult to determine its exact nature without more "
-    },
-    {
-      "id": "proj-34",
-      "title": "Financial News & Investment Magazine",
-      "slug": "wall-street-italia",
-      "category": "Client Website",
-      "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
-      ],
-      "description": "Wall Street Italia is a monthly publication that provides in-depth insights on investments, financial advice, savings, insurance, business, and lifestyle to help readers make informed financial decisions.",
-      "features": [],
-      "clientName": "Wall Street Italia",
-      "projectUrl": "",
-      "githubUrl": "",
-      "thumbnail": "assets/projects/wall-street-italia.svg",
-      "gallery": [
-        "assets/projects/wall-street-italia.svg"
-      ],
-      "featured": false,
-      "status": true,
-      "seoTitle": "Financial News & Investment Magazine - Ritesh Kumar",
-      "seoDescription": "Wall Street Italia is a monthly publication that provides in-depth insights on investments, financial advice, savings, insurance, business, and lifestyle to hel"
-    },
-    {
-      "id": "proj-35",
+      "id": "proj-18",
       "title": "Sylius Two-Factor Auth Plugin (Open Source)",
       "slug": "github-2fa-plugin",
-      "category": "Client Website",
+      "category": "Open Source & Code",
       "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
+        "Sylius",
+        "GitHub"
       ],
       "description": "Sylius 2FA Plugin adds Two-Factor Authentication (TOTP) for stronger account security. Protect logins with a secondary code via apps like Google Authenticator.",
       "features": [],
@@ -1084,10 +675,10 @@
       "seoDescription": "Sylius 2FA Plugin adds Two-Factor Authentication (TOTP) for stronger account security. Protect logins with a secondary code via apps like Google Authenticator."
     },
     {
-      "id": "proj-36",
+      "id": "proj-19",
       "title": "Sylius 2.0 Admin TOTP Security Plugin",
       "slug": "sylius-store-2fa-plugin",
-      "category": "Client Website",
+      "category": "Open Source & Code",
       "techStack": [
         "Web Development",
         "Responsive Design",
@@ -1098,9 +689,9 @@
       "clientName": "Sylius Store - 2FA Plugin",
       "projectUrl": "https://store.sylius.com/products/sylius-2fa-plugin-by-vivan-web-solution",
       "githubUrl": "",
-      "thumbnail": "assets/projects/sylius-store-2fa-plugin.svg",
+      "thumbnail": "assets/projects/sylius-store-2fa-plugin.jpg",
       "gallery": [
-        "assets/projects/sylius-store-2fa-plugin.svg"
+        "assets/projects/sylius-store-2fa-plugin.jpg"
       ],
       "featured": false,
       "status": true,
@@ -1108,14 +699,13 @@
       "seoDescription": "Enable free TOTP-based two‑factor authentication for Sylius 2.0 Admin users—adds an extra security step via a one‑time code and QR‑code setup, at no cost."
     },
     {
-      "id": "proj-37",
+      "id": "proj-20",
       "title": "Mautic Marketing Automation Customization",
       "slug": "mautic",
-      "category": "Client Website",
+      "category": "Open Source & Code",
       "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
+        "Mautic",
+        "GitHub"
       ],
       "description": "Worked on Mautic features like Contact Management, Campaign Automation, Forms, Landing Pages, etc. Handled lead generation, engagement, and performance tracking through marketing automation tools.",
       "features": [],
@@ -1132,14 +722,14 @@
       "seoDescription": "Worked on Mautic features like Contact Management, Campaign Automation, Forms, Landing Pages, etc. Handled lead generation, engagement, and performance tracking"
     },
     {
-      "id": "proj-38",
+      "id": "proj-21",
       "title": "Symfony JWT Property Data Generator",
       "slug": "symfony-jwt",
-      "category": "Client Website",
+      "category": "Open Source & Code",
       "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
+        "Symfony",
+        "JWT",
+        "GitHub"
       ],
       "description": "This Symfony command generates dummy property data in JSON format and clears the cached property data. It is useful for quickly creating sample data during development or testing.",
       "features": [],
@@ -1156,14 +746,14 @@
       "seoDescription": "This Symfony command generates dummy property data in JSON format and clears the cached property data. It is useful for quickly creating sample data during deve"
     },
     {
-      "id": "proj-39",
+      "id": "proj-22",
       "title": "Laravel & Vue Full-Stack API App",
       "slug": "laravel-vue-js",
-      "category": "Client Website",
+      "category": "Open Source & Code",
       "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
+        "Laravel",
+        "Vue",
+        "GitHub"
       ],
       "description": "A Laravel + Vue full-stack application demonstrating API integration, pagination, and user-specific data management with Docker support.",
       "features": [],
@@ -1180,14 +770,13 @@
       "seoDescription": "A Laravel + Vue full-stack application demonstrating API integration, pagination, and user-specific data management with Docker support."
     },
     {
-      "id": "proj-40",
+      "id": "proj-23",
       "title": "Python AI Logic Flow Demo",
       "slug": "python-ai",
-      "category": "Client Website",
+      "category": "Open Source & Code",
       "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
+        "Python",
+        "GitHub"
       ],
       "description": "A Python-based project demonstrating user input handling and logic flow, with optional integration of libraries like NumPy and MongoDB for enhanced functionality and data storage.",
       "features": [],
@@ -1204,14 +793,13 @@
       "seoDescription": "A Python-based project demonstrating user input handling and logic flow, with optional integration of libraries like NumPy and MongoDB for enhanced functionalit"
     },
     {
-      "id": "proj-41",
+      "id": "proj-24",
       "title": "Rule-Based Loan Strategy Advisor",
       "slug": "loan-strategy-adviser",
-      "category": "Client Website",
+      "category": "Open Source & Code",
       "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
+        "Python",
+        "GitHub"
       ],
       "description": "A Python application that helps suggest optimal loan strategies using rule-based logic. It showcases data-driven decision-making and can be extended with financial calculations or database integration.",
       "features": [],
@@ -1228,14 +816,14 @@
       "seoDescription": "A Python application that helps suggest optimal loan strategies using rule-based logic. It showcases data-driven decision-making and can be extended with financ"
     },
     {
-      "id": "proj-42",
+      "id": "proj-25",
       "title": "Symfony Order Management System",
       "slug": "order-management-app",
-      "category": "Client Website",
+      "category": "Open Source & Code",
       "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
+        "PHP",
+        "Symfony",
+        "GitHub"
       ],
       "description": "This project is an Order Management Application built with Symfony (PHP) on the backend and Angular CLI (TypeScript) on the frontend.",
       "features": [],
@@ -1252,14 +840,15 @@
       "seoDescription": "This project is an Order Management Application built with Symfony (PHP) on the backend and Angular CLI (TypeScript) on the frontend."
     },
     {
-      "id": "proj-43",
+      "id": "proj-26",
       "title": "Laravel & React Fruit Management App",
       "slug": "laravel-react-js",
-      "category": "Client Website",
+      "category": "Open Source & Code",
       "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
+        "PHP",
+        "Laravel",
+        "React",
+        "GitHub"
       ],
       "description": "This project is a full-stack fruit management application built with Laravel (PHP) for the backend and ReactJS for the frontend. It fetches fruit data from an external API and allows users to view, filter, and favorite fruits.",
       "features": [],
@@ -1276,14 +865,13 @@
       "seoDescription": "This project is a full-stack fruit management application built with Laravel (PHP) for the backend and ReactJS for the frontend. It fetches fruit data from an e"
     },
     {
-      "id": "proj-44",
+      "id": "proj-27",
       "title": "React Component & State Examples",
       "slug": "react-js",
-      "category": "Client Website",
+      "category": "Open Source & Code",
       "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
+        "React",
+        "GitHub"
       ],
       "description": "A collection of React.js examples demonstrating component-based architecture, state management, and basic UI interactions for learning and reference.",
       "features": [],
@@ -1300,14 +888,15 @@
       "seoDescription": "A collection of React.js examples demonstrating component-based architecture, state management, and basic UI interactions for learning and reference."
     },
     {
-      "id": "proj-45",
+      "id": "proj-28",
       "title": "Node.js AdminJS Dashboard",
       "slug": "node-js",
-      "category": "Client Website",
+      "category": "Open Source & Code",
       "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
+        "React",
+        "Node",
+        "AdminJS",
+        "GitHub"
       ],
       "description": "This project is a Node.js-based Admin Dashboard built using AdminJS, Express, MongoDB, and React. It provides an admin interface for managing users and includes authentication, session management, and a custom dashboard component.",
       "features": [],
@@ -1324,14 +913,14 @@
       "seoDescription": "This project is a Node.js-based Admin Dashboard built using AdminJS, Express, MongoDB, and React. It provides an admin interface for managing users and includes"
     },
     {
-      "id": "proj-46",
+      "id": "proj-29",
       "title": "Support Ticketing Web App",
       "slug": "mini-ticketing-system",
-      "category": "Client Website",
+      "category": "Open Source & Code",
       "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
+        "Vue",
+        "Node",
+        "GitHub"
       ],
       "description": "A web-based mini ticketing system with user authentication, ticket management, and status tracking. Built with Vue.js, Node.js, MongoDB, and Docker for easy deployment.",
       "features": [],
@@ -1348,14 +937,14 @@
       "seoDescription": "A web-based mini ticketing system with user authentication, ticket management, and status tracking. Built with Vue.js, Node.js, MongoDB, and Docker for easy dep"
     },
     {
-      "id": "proj-47",
+      "id": "proj-30",
       "title": "MailChimp API v3 PHP Integration",
       "slug": "mailchimp",
-      "category": "Client Website",
+      "category": "Open Source & Code",
       "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
+        "PHP",
+        "MailChimp",
+        "GitHub"
       ],
       "description": "A PHP integration with MailChimp API v3, enabling subscription management, audience list handling, and campaign operations through RESTful API calls.",
       "features": [],
@@ -1372,14 +961,14 @@
       "seoDescription": "A PHP integration with MailChimp API v3, enabling subscription management, audience list handling, and campaign operations through RESTful API calls."
     },
     {
-      "id": "proj-48",
+      "id": "proj-31",
       "title": "Stripe Payment Gateway Integration",
       "slug": "stripe",
-      "category": "Client Website",
+      "category": "Open Source & Code",
       "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
+        "PHP",
+        "Stripe",
+        "GitHub"
       ],
       "description": "A PHP-based implementation of Stripe payment gateway for handling secure online transactions, including customer checkout and payment processing.",
       "features": [],
@@ -1396,14 +985,13 @@
       "seoDescription": "A PHP-based implementation of Stripe payment gateway for handling secure online transactions, including customer checkout and payment processing."
     },
     {
-      "id": "proj-49",
+      "id": "proj-32",
       "title": "Full-Stack Ticket Management App",
       "slug": "mini-ticket-system",
-      "category": "Client Website",
+      "category": "Open Source & Code",
       "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
+        "Backend",
+        "GitHub"
       ],
       "description": "A full-stack web application for managing support tickets, featuring user authentication, ticket creation, status updates, and admin controls.",
       "features": [],
@@ -1420,14 +1008,14 @@
       "seoDescription": "A full-stack web application for managing support tickets, featuring user authentication, ticket creation, status updates, and admin controls."
     },
     {
-      "id": "proj-50",
+      "id": "proj-33",
       "title": "Vue.js Core Concepts Playground",
       "slug": "vuejs",
-      "category": "Client Website",
+      "category": "Open Source & Code",
       "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
+        "React",
+        "Vue",
+        "GitHub"
       ],
       "description": "A collection of Vue.js examples demonstrating core concepts like component structure, data binding, event handling, and reactive UI development for beginners and learners.",
       "features": [],
@@ -1444,14 +1032,13 @@
       "seoDescription": "A collection of Vue.js examples demonstrating core concepts like component structure, data binding, event handling, and reactive UI development for beginners an"
     },
     {
-      "id": "proj-51",
+      "id": "proj-34",
       "title": "Laravel Routing & Blade Starter App",
       "slug": "laravel",
-      "category": "Client Website",
+      "category": "Open Source & Code",
       "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
+        "Laravel",
+        "GitHub"
       ],
       "description": "A Laravel project showcasing essential features such as routing, controllers, Blade templating, and database interactions—ideal for learning and testing Laravel fundamentals.",
       "features": [],
@@ -1468,14 +1055,13 @@
       "seoDescription": "A Laravel project showcasing essential features such as routing, controllers, Blade templating, and database interactions—ideal for learning and testing Laravel"
     },
     {
-      "id": "proj-52",
+      "id": "proj-35",
       "title": "Symfony Movie REST API",
       "slug": "symfony",
-      "category": "Client Website",
+      "category": "Open Source & Code",
       "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
+        "Symfony",
+        "GitHub"
       ],
       "description": "A Symfony-based REST API for managing movie records, featuring endpoints to create, retrieve single or multiple movies filtered by user, populated with sample data via fixtures.",
       "features": [],
@@ -1492,14 +1078,13 @@
       "seoDescription": "A Symfony-based REST API for managing movie records, featuring endpoints to create, retrieve single or multiple movies filtered by user, populated with sample d"
     },
     {
-      "id": "proj-53",
+      "id": "proj-36",
       "title": "Shopware Point-of-Sale Plugin",
       "slug": "swagpos-system",
-      "category": "Client Website",
+      "category": "Open Source & Code",
       "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
+        "Shopware",
+        "GitHub"
       ],
       "description": "A lightweight, mobile-friendly POS system for Shopware 6.6+ and 6.7+, enabling walk-in sales through a standalone interface. Perfect for retail counters, quick order processing, and terminal-based operations.",
       "features": [],
@@ -1516,14 +1101,13 @@
       "seoDescription": "A lightweight, mobile-friendly POS system for Shopware 6.6+ and 6.7+, enabling walk-in sales through a standalone interface. Perfect for retail counters, quick "
     },
     {
-      "id": "proj-54",
+      "id": "proj-37",
       "title": "Shopware Dynamic Promotions Plugin",
       "slug": "swagpromogenius",
-      "category": "Client Website",
+      "category": "Open Source & Code",
       "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
+        "Shopware",
+        "GitHub"
       ],
       "description": "A Shopware plugin that enables dynamic and customizable promotional offers within the storefront. Designed to enhance marketing strategies by allowing businesses to easily create, manage, and display promotions in real-time.",
       "features": [],
@@ -1540,14 +1124,13 @@
       "seoDescription": "A Shopware plugin that enables dynamic and customizable promotional offers within the storefront. Designed to enhance marketing strategies by allowing businesse"
     },
     {
-      "id": "proj-55",
+      "id": "proj-38",
       "title": "Ticket Management Backend API",
       "slug": "smart-ticket-api",
-      "category": "Client Website",
+      "category": "Open Source & Code",
       "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
+        "Backend",
+        "GitHub"
       ],
       "description": "Smart Ticket API is a backend service for managing support or event tickets, enabling ticket creation, tracking, and updates. It provides structured endpoints for efficient ticket workflow management.",
       "features": [],
@@ -1564,14 +1147,14 @@
       "seoDescription": "Smart Ticket API is a backend service for managing support or event tickets, enabling ticket creation, tracking, and updates. It provides structured endpoints f"
     },
     {
-      "id": "proj-56",
+      "id": "proj-39",
       "title": "Mautic Two-Factor Authentication Bundle",
       "slug": "mutic-2-factor-authentication",
-      "category": "Client Website",
+      "category": "Open Source & Code",
       "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
+        "Symfony",
+        "Mautic",
+        "GitHub"
       ],
       "description": "The MauticTwoFactorAuthBundle is a Symfony-based plugin for Mautic that adds two-factor authentication (2FA) to enhance login security and protect user accounts. It provides an additional verification step, making unauthorized access significantly harder.",
       "features": [],
@@ -1588,38 +1171,13 @@
       "seoDescription": "The MauticTwoFactorAuthBundle is a Symfony-based plugin for Mautic that adds two-factor authentication (2FA) to enhance login security and protect user accounts"
     },
     {
-      "id": "proj-57",
-      "title": "Django Student Management System",
-      "slug": "preskool",
-      "category": "Client Website",
-      "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
-      ],
-      "description": "A complete Student Management System built with Django, featuring modules for Students, Staff, Courses, Attendance, and Results. It offers role-based portals, authentication, profile management, and a responsive Bootstrap 5 dashboard.",
-      "features": [],
-      "clientName": "Preskool",
-      "projectUrl": "",
-      "githubUrl": "",
-      "thumbnail": "assets/projects/preskool.svg",
-      "gallery": [
-        "assets/projects/preskool.svg"
-      ],
-      "featured": false,
-      "status": true,
-      "seoTitle": "Django Student Management System - Ritesh Kumar",
-      "seoDescription": "A complete Student Management System built with Django, featuring modules for Students, Staff, Courses, Attendance, and Results. It offers role-based portals, a"
-    },
-    {
-      "id": "proj-58",
+      "id": "proj-40",
       "title": "Django & Scrapy Web Scraping Dashboard",
       "slug": "django-scraping-dashboard",
-      "category": "Client Website",
+      "category": "Open Source & Code",
       "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
+        "Django",
+        "GitHub"
       ],
       "description": "A Django and Scrapy-based web scraping project with job scheduling, proxy handling, monitoring dashboard, and data export — ideal for large-scale data collection.",
       "features": [],
@@ -1636,14 +1194,13 @@
       "seoDescription": "A Django and Scrapy-based web scraping project with job scheduling, proxy handling, monitoring dashboard, and data export — ideal for large-scale data collectio"
     },
     {
-      "id": "proj-59",
+      "id": "proj-41",
       "title": "Django eCommerce Shop",
       "slug": "django-ecommerce-store",
-      "category": "Client Website",
+      "category": "Open Source & Code",
       "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
+        "Django",
+        "GitHub"
       ],
       "description": "A Django-powered eCommerce website for browsing products, managing carts, and processing orders. It includes user authentication and PayPal payment integration.",
       "features": [],
@@ -1660,14 +1217,14 @@
       "seoDescription": "A Django-powered eCommerce website for browsing products, managing carts, and processing orders. It includes user authentication and PayPal payment integration."
     },
     {
-      "id": "proj-60",
+      "id": "proj-42",
       "title": "FastAPI Calendar Appointment Chatbot",
       "slug": "appointmentbot",
-      "category": "Client Website",
+      "category": "Open Source & Code",
       "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
+        "Python",
+        "FastAPI",
+        "GitHub"
       ],
       "description": "Python-AppointmentBot is a FastAPI-based chatbot that manages Google Calendar appointments. It allows users to book, reschedule, or cancel meetings directly through Dialogflow integration.",
       "features": [],
@@ -1684,7 +1241,7 @@
       "seoDescription": "Python-AppointmentBot is a FastAPI-based chatbot that manages Google Calendar appointments. It allows users to book, reschedule, or cancel meetings directly thr"
     },
     {
-      "id": "proj-61",
+      "id": "proj-43",
       "title": "Feminine & Incontinence Care Online Store",
       "slug": "lunacare",
       "category": "Client Website",
@@ -1698,9 +1255,9 @@
       "clientName": "LUNAcare",
       "projectUrl": "https://thelunacare.com/en-us",
       "githubUrl": "",
-      "thumbnail": "assets/projects/lunacare.png",
+      "thumbnail": "assets/projects/lunacare.jpg",
       "gallery": [
-        "assets/projects/lunacare.png"
+        "assets/projects/lunacare.jpg"
       ],
       "featured": false,
       "status": true,
@@ -1708,7 +1265,7 @@
       "seoDescription": "LunaCare is an e-commerce website offering modern menstrual and incontinence care products. It provides reusable period underwear, menstrual cups, and leak-proo"
     },
     {
-      "id": "proj-62",
+      "id": "proj-44",
       "title": "Africa Unbound Initiative Website",
       "slug": "africa-unbound",
       "category": "Client Website",
@@ -1722,9 +1279,9 @@
       "clientName": "Africa Unbound",
       "projectUrl": "https://africaunbound.com/",
       "githubUrl": "",
-      "thumbnail": "assets/projects/africa-unbound.png",
+      "thumbnail": "assets/projects/africa-unbound.jpg",
       "gallery": [
-        "assets/projects/africa-unbound.png"
+        "assets/projects/africa-unbound.jpg"
       ],
       "featured": false,
       "status": true,
@@ -1732,71 +1289,23 @@
       "seoDescription": "AfricaUnbound.com is a platform connected to the Africa Unbound initiative, which focuses on leadership development, community discussions, and personal growth "
     },
     {
-      "id": "proj-63",
-      "title": "Custom Fishing Rods WordPress Website",
-      "slug": "4k-custom-rods",
-      "category": "Client Website",
-      "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
-      ],
-      "description": "This website has been built using the WordPress default editor, primarily utilizing built-in tools with minimal custom CSS, making it easy for users to update and manage content.",
-      "features": [],
-      "clientName": "4k Custom Rods",
-      "projectUrl": "",
-      "githubUrl": "",
-      "thumbnail": "assets/projects/4k-custom-rods.svg",
-      "gallery": [
-        "assets/projects/4k-custom-rods.svg"
-      ],
-      "featured": false,
-      "status": true,
-      "seoTitle": "Custom Fishing Rods WordPress Website - Ritesh Kumar",
-      "seoDescription": "This website has been built using the WordPress default editor, primarily utilizing built-in tools with minimal custom CSS, making it easy for users to update a"
-    },
-    {
-      "id": "proj-64",
-      "title": "Tourism Admin Backend Panel",
-      "slug": "raj-tours-portal",
-      "category": "Client Website",
-      "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
-      ],
-      "description": "This website appears to be the admin (backend) panel for a tourism website called Raj Tours, where site administrators manage content, bookings, and user data.",
-      "features": [],
-      "clientName": "Raj Tours Portal",
-      "projectUrl": "https://admin.rajankumartourism.com/",
-      "githubUrl": "",
-      "thumbnail": "assets/projects/raj-tours-portal.svg",
-      "gallery": [
-        "assets/projects/raj-tours-portal.svg"
-      ],
-      "featured": false,
-      "status": true,
-      "seoTitle": "Tourism Admin Backend Panel - Ritesh Kumar",
-      "seoDescription": "This website appears to be the admin (backend) panel for a tourism website called Raj Tours, where site administrators manage content, bookings, and user data."
-    },
-    {
-      "id": "proj-65",
+      "id": "proj-45",
       "title": "QR Fuel Pass Customer Mobile App",
       "slug": "fuel-pass-in-app-customer-app",
-      "category": "Client Website",
+      "category": "Mobile App",
       "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
+        "Android",
+        "Mobile App",
+        "QR"
       ],
       "description": "Fuel Pass IN lets users securely manage vehicle registration, access live QR fuel passes, track fuel usage, and receive fuel based on assigned daily quotas.",
       "features": [],
       "clientName": "Fuel Pass IN App (Customer App)",
       "projectUrl": "https://play.google.com/store/apps/details?id=in.fuelpass.app",
       "githubUrl": "",
-      "thumbnail": "assets/projects/fuel-pass-in-app-customer-app.png",
+      "thumbnail": "assets/projects/fuel-pass-in-app-customer-app.jpg",
       "gallery": [
-        "assets/projects/fuel-pass-in-app-customer-app.png"
+        "assets/projects/fuel-pass-in-app-customer-app.jpg"
       ],
       "featured": false,
       "status": true,
@@ -1804,23 +1313,23 @@
       "seoDescription": "Fuel Pass IN lets users securely manage vehicle registration, access live QR fuel passes, track fuel usage, and receive fuel based on assigned daily quotas."
     },
     {
-      "id": "proj-66",
+      "id": "proj-46",
       "title": "Fuel Station Operator QR Scanner App",
       "slug": "fuel-pass-operator-app-pump-operator-app",
-      "category": "Client Website",
+      "category": "Mobile App",
       "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
+        "Android",
+        "Mobile App",
+        "QR"
       ],
       "description": "Fuel Pass Operator enables station staff to scan QR codes, verify vehicle eligibility, dispense fuel, monitor transactions, and manage daily fueling operations efficiently.",
       "features": [],
       "clientName": "Fuel Pass Operator App (Pump Operator App)",
       "projectUrl": "https://play.google.com/store/apps/details?id=in.fuelpass.operator",
       "githubUrl": "",
-      "thumbnail": "assets/projects/fuel-pass-operator-app-pump-operator-app.png",
+      "thumbnail": "assets/projects/fuel-pass-operator-app-pump-operator-app.jpg",
       "gallery": [
-        "assets/projects/fuel-pass-operator-app-pump-operator-app.png"
+        "assets/projects/fuel-pass-operator-app-pump-operator-app.jpg"
       ],
       "featured": false,
       "status": true,
@@ -1828,76 +1337,28 @@
       "seoDescription": "Fuel Pass Operator enables station staff to scan QR codes, verify vehicle eligibility, dispense fuel, monitor transactions, and manage daily fueling operations "
     },
     {
-      "id": "proj-67",
+      "id": "proj-47",
       "title": "DOOH Video Ad Campaign Platform",
       "slug": "trendcatch-advertiser",
-      "category": "Client Website",
+      "category": "Mobile App",
       "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
+        "Android",
+        "Mobile App",
+        "QR"
       ],
       "description": "TrendCatch Advertiser enables businesses to launch DOOH video campaigns, target locations, monitor proof-of-play, track real-time analytics, and manage advertising from one platform.",
       "features": [],
       "clientName": "TrendCatch Advertiser",
       "projectUrl": "https://play.google.com/store/apps/details?id=com.tradecache.trade_cache_flutter_app",
       "githubUrl": "",
-      "thumbnail": "assets/projects/trendcatch-advertiser.svg",
+      "thumbnail": "assets/projects/trendcatch-advertiser.jpg",
       "gallery": [
-        "assets/projects/trendcatch-advertiser.svg"
+        "assets/projects/trendcatch-advertiser.jpg"
       ],
       "featured": false,
       "status": true,
       "seoTitle": "DOOH Video Ad Campaign Platform - Ritesh Kumar",
       "seoDescription": "TrendCatch Advertiser enables businesses to launch DOOH video campaigns, target locations, monitor proof-of-play, track real-time analytics, and manage advertis"
-    },
-    {
-      "id": "proj-68",
-      "title": "Environmental Services Operations Web App",
-      "slug": "foundation-environmental",
-      "category": "Client Website",
-      "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
-      ],
-      "description": "A centralized web application for managing environmental service operations, including customers, quotes, jobsheets, scheduling, generators, maintenance, inventory, safety requirements, and reporting.",
-      "features": [],
-      "clientName": "Foundation Environmental",
-      "projectUrl": "",
-      "githubUrl": "",
-      "thumbnail": "assets/projects/foundation-environmental.svg",
-      "gallery": [
-        "assets/projects/foundation-environmental.svg"
-      ],
-      "featured": false,
-      "status": true,
-      "seoTitle": "Environmental Services Operations Web App - Ritesh Kumar",
-      "seoDescription": "A centralized web application for managing environmental service operations, including customers, quotes, jobsheets, scheduling, generators, maintenance, invent"
-    },
-    {
-      "id": "proj-69",
-      "title": "Hostel & PG Management Web + Mobile App",
-      "slug": "hostel-pg-management-platform",
-      "category": "Client Website",
-      "techStack": [
-        "Web Development",
-        "Responsive Design",
-        "CMS"
-      ],
-      "description": "An all-in-one web and mobile platform for hostel owners to manage rooms, tenants, bookings, rent, payments, complaints, and daily operations efficiently.",
-      "features": [],
-      "clientName": "Hostel & PG Management Platform",
-      "projectUrl": "",
-      "githubUrl": "",
-      "thumbnail": "assets/projects/hostel-pg-management-platform.svg",
-      "gallery": [
-        "assets/projects/hostel-pg-management-platform.svg"
-      ],
-      "featured": false,
-      "status": true,
-      "seoTitle": "Hostel & PG Management Web + Mobile App - Ritesh Kumar",
-      "seoDescription": "An all-in-one web and mobile platform for hostel owners to manage rooms, tenants, bookings, rent, payments, complaints, and daily operations efficiently."
     }
   ],
   "experience": [
