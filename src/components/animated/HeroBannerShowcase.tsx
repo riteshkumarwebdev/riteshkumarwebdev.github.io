@@ -156,6 +156,7 @@ export const HeroBannerShowcase: React.FC<HeroBannerShowcaseProps> = ({ hero, pr
             {profile.resumeUrl && (
               <a
                 href={profile.resumeUrl}
+                download="Ritesh-Kumar-Full-Stack-Developer-Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`p-3.5 rounded-2xl ${

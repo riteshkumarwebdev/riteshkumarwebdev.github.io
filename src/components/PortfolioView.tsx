@@ -423,6 +423,7 @@ export default function PortfolioView({ onOpenAdmin, siteName }: PortfolioViewPr
                 <MotionButton id="resume-download-btn">
                   <a 
                     href={profile.resumeUrl || "#"} 
+                    download="Ritesh-Kumar-Full-Stack-Developer-Resume.pdf"
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 transition-colors text-white text-xs font-mono font-bold tracking-wide uppercase text-center block"
