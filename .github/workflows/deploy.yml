@@ -24,9 +24,12 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
-      - run: npm run build
-        env:
-          VITE_BASE: /${{ github.event.repository.name }}/
+      - name: Build
+        run: |
+          REPO="${{ github.event.repository.name }}"
+          if [[ "$REPO" == *.github.io ]]; then BASE="/"; else BASE="/$REPO/"; fi
+          VITE_BASE="$BASE" npm run build
+          if [ "$BASE" = "/" ]; then sed -i 's/pathSegmentsToKeep = 1/pathSegmentsToKeep = 0/' dist/404.html; fi
       - run: touch dist/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:
